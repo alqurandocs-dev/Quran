@@ -20,7 +20,7 @@ export function SurahPage() {
 
   const { arabic, translation, transliteration, isLoading, error } = useSurah(surahNumber)
   const { setLastRead, addRecentSurah } = useReadingStore()
-  const { isPlaying, currentSurah, setSurah, setPlaying } = useAudioStore()
+  const { isPlaying, currentSurah, setPlaying, playSurahWithBismillah } = useAudioStore()
   const { user } = useAuthStore()
   const { autoSaveProgress } = useSettingsStore()
 
@@ -64,10 +64,7 @@ export function SurahPage() {
     if (isSurahPlaying) {
       setPlaying(false)
     } else {
-      // Always start from ayah 1 when playing full surah from header
-      setSurah(surahNumber, surah?.numberOfAyahs || 7)
-      // Small delay so state settles before play triggers
-      setTimeout(() => setPlaying(true), 50)
+      playSurahWithBismillah(surahNumber, surah?.numberOfAyahs || 7)
     }
   }
 

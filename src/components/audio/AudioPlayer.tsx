@@ -13,7 +13,7 @@ export function AudioPlayer() {
 
   const {
     isPlaying, currentSurah, currentAyah, totalAyahs,
-    duration, currentTime, qari,
+    duration, currentTime, qari, bismillahSurah,
     setPlaying, setDuration, setCurrentTime, nextAyah, prevAyah, stop, savePosition,
   } = useAudioStore()
 
@@ -75,11 +75,15 @@ export function AudioPlayer() {
 
   const handleEnded = useCallback(() => {
     savePosition()
-    const { currentAyah: ca, totalAyahs: ta } = useAudioStore.getState()
+    const { currentAyah: ca, totalAyahs: ta, bismillahSurah: bs } = useAudioStore.getState()
+    // If we just played bismillah, switch to the target surah
+    if (bs) {
+      useAudioStore.setState({ currentSurah: bs.surah, totalAyahs: bs.totalAyahs, currentAyah: 1, bismillahSurah: null, currentTime: 0 })
+      return
+    }
     if (ca && ca < ta) {
       nextAyah()
     } else {
-      // Surah finished
       setPlaying(false)
     }
   }, [nextAyah, savePosition, setPlaying])

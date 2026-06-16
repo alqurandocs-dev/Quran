@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type BanglaTranslation = 'bn.muhiuddinkhan' | 'bn.zakaria'
+export type BanglaTranslation = 'bn.bengali' | 'bn.hoque'
 export type TranslationLanguage = 'bangla' | 'english'
 export type LineHeight = 'normal' | 'relaxed' | 'loose'
 export type PlaybackSpeed = 0.75 | 1 | 1.25 | 1.5
@@ -43,7 +43,7 @@ export const useSettingsStore = create<SettingsState>()(
       arabicFontSize: 'xl',
       lineHeight: 'relaxed',
       translationLanguage: 'bangla',
-      banglaTranslation: 'bn.muhiuddinkhan',
+      banglaTranslation: 'bn.bengali',
       showTransliteration: true,
       showTafsir: false,
       showAyahNumbers: true,
@@ -70,8 +70,8 @@ export const useSettingsStore = create<SettingsState>()(
       version: 1,
       migrate: (persistedState, _version) => {
         const s = persistedState as Record<string, unknown>
-        if (s['banglaTranslation'] === 'bn.bengali') s['banglaTranslation'] = 'bn.muhiuddinkhan'
-        if (s['banglaTranslation'] === 'bn.hoque') s['banglaTranslation'] = 'bn.zakaria'
+        if (s['banglaTranslation'] === 'bn.muhiuddinkhan') s['banglaTranslation'] = 'bn.bengali'
+        if (s['banglaTranslation'] === 'bn.zakaria') s['banglaTranslation'] = 'bn.hoque'
         return s as unknown as SettingsState
       },
     }

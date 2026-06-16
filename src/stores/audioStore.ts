@@ -10,6 +10,7 @@ interface AudioStore {
   currentTime: number
   qari: string
   lastPosition: { surah: number; ayah: number } | null
+  bismillahSurah: { surah: number; totalAyahs: number } | null  // surah to play after bismillah
 
   setPlaying: (playing: boolean) => void
   setSurah: (surah: number, totalAyahs: number) => void
@@ -21,6 +22,7 @@ interface AudioStore {
   prevAyah: () => void
   stop: () => void
   savePosition: () => void
+  playSurahWithBismillah: (surahNumber: number, totalAyahs: number) => void
 }
 
 export const useAudioStore = create<AudioStore>()(
@@ -34,6 +36,7 @@ export const useAudioStore = create<AudioStore>()(
       currentTime: 0,
       qari: 'ar.alafasy',
       lastPosition: null,
+      bismillahSurah: null,
 
       setPlaying: (isPlaying) => set({ isPlaying }),
       setSurah: (surah, totalAyahs) => set({ currentSurah: surah, totalAyahs, currentAyah: 1 }),
@@ -56,7 +59,15 @@ export const useAudioStore = create<AudioStore>()(
         }
       },
 
-      stop: () => set({ isPlaying: false, currentSurah: null, currentAyah: null }),
+      stop: () => set({ isPlaying: false, currentSurah: null, currentAyah: null, bismillahSurah: null }),
+
+      playSurahWithBismillah: (surahNumber, totalAyahs) => {
+        if (surahNumber === 1 || surahNumber === 9) {
+          set({ currentSurah: surahNumber, totalAyahs, currentAyah: 1, bismillahSurah: null, isPlaying: true })
+        } else {
+          set({ currentSurah: 1, totalAyahs: 7, currentAyah: 1, bismillahSurah: { surah: surahNumber, totalAyahs }, isPlaying: true })
+        }
+      },
 
       savePosition: () => {
         const { currentSurah, currentAyah } = get()
