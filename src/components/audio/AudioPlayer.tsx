@@ -13,7 +13,7 @@ export function AudioPlayer() {
 
   const {
     isPlaying, currentSurah, currentAyah, totalAyahs,
-    duration, currentTime, qari, bismillahSurah,
+    duration, currentTime, qari,
     setPlaying, setDuration, setCurrentTime, nextAyah, prevAyah, stop, savePosition,
   } = useAudioStore()
 
