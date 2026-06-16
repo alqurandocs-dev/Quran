@@ -128,8 +128,8 @@ export const QARIS = [
 
 // Correct AlQuran.cloud API edition identifiers
 export const TRANSLATION_OPTIONS = [
-  { id: 'bn.bengali', label: 'মুহিউদ্দীন খান', language: 'bangla' },
-  { id: 'bn.hoque', label: 'জহুরুল হক', language: 'bangla' },
+  { id: 'bn.muhiuddinkhan', label: 'মুহিউদ্দীন খান', language: 'bangla' },
+  { id: 'bn.zakaria', label: 'জহুরুল হক', language: 'bangla' },
   { id: 'en.sahih', label: 'Sahih International', language: 'english' },
   { id: 'en.pickthall', label: 'Pickthall', language: 'english' },
 ]

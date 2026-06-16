@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type BanglaTranslation = 'bn.bengali' | 'bn.hoque'
+export type BanglaTranslation = 'bn.muhiuddinkhan' | 'bn.zakaria'
 export type TranslationLanguage = 'bangla' | 'english'
 export type LineHeight = 'normal' | 'relaxed' | 'loose'
 export type PlaybackSpeed = 0.75 | 1 | 1.25 | 1.5
@@ -43,7 +43,7 @@ export const useSettingsStore = create<SettingsState>()(
       arabicFontSize: 'xl',
       lineHeight: 'relaxed',
       translationLanguage: 'bangla',
-      banglaTranslation: 'bn.bengali',
+      banglaTranslation: 'bn.muhiuddinkhan',
       showTransliteration: true,
       showTafsir: false,
       showAyahNumbers: true,
