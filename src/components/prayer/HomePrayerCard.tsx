@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowUpRight } from 'lucide-react'
+import { MapPin, ChevronRight, Info } from 'lucide-react'
 import { usePrayerData, useCurrentPrayerState } from '@/hooks/usePrayerData'
 import { usePrayerCountdown } from '@/hooks/usePrayerCountdown'
 
@@ -8,108 +8,136 @@ const PRAYER_ICONS: Record<string, string> = {
 }
 
 export function HomePrayerCard() {
-  const { entries, timings } = usePrayerData()
+  const { entries, timings, hijriDate, cityName } = usePrayerData()
   const { current, next } = useCurrentPrayerState(entries)
-  const countdown = usePrayerCountdown(next?.time)
 
-  const progressPct = timings
-    ? Math.max(4, 100 - (countdown.seconds / 86400) * 100)
-    : 10
+  // Countdown to END of current prayer (= next prayer start)
+  const currentEndTime = next?.time
+  const countdown = usePrayerCountdown(currentEndTime)
+
+  // Build time ranges: each prayer ends when next one starts
+  const getEndTime = (idx: number): string => {
+    if (idx + 1 < entries.length) return entries[idx + 1].time12
+    // Isha ends at Fajr (next day) — just show Fajr time
+    return entries[0]?.time12 ?? ''
+  }
+
+  // Fajr ends at sunrise
+  const sunrise = timings?.['Sunrise']
+  const getFajrEnd = (): string => {
+    if (!sunrise) return entries[1]?.time12 ?? ''
+    const [h, m] = sunrise.replace(' (UTC)', '').split(':').map(Number)
+    const period = h >= 12 ? 'PM' : 'AM'
+    const hr = h % 12 || 12
+    return `${String(hr).padStart(2, '0')}:${String(m).padStart(2, '0')} ${period}`
+  }
+
+  const hijriText = hijriDate
+    ? `${hijriDate.day} ${hijriDate.month?.en ?? ''}, ${hijriDate.year} হিজরি`
+    : null
+
+  const todayStr = new Date().toLocaleDateString('bn-BD', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+  })
 
   return (
-    <Link to="/prayer" className="block group">
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0d4a2e] via-[#0f5c38] to-[#0a3d26] shadow-2xl shadow-green-950/60 ring-1 ring-green-500/20 transition-all group-hover:ring-green-400/40 group-hover:shadow-green-900/70">
+    <div className="rounded-2xl overflow-hidden border" style={{ background: '#0F172A', borderColor: '#1E293B' }}>
 
-        {/* Decorative blobs */}
-        <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-green-400/10 blur-2xl" />
-        <div className="pointer-events-none absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-emerald-300/10 blur-2xl" />
-        <div className="pointer-events-none absolute top-1/2 right-1/4 h-20 w-20 rounded-full bg-green-500/8 blur-xl" />
+      {/* Hijri date chip */}
+      {hijriText && (
+        <div className="flex justify-center pt-4 pb-2">
+          <div className="flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs"
+            style={{ borderColor: '#334155', color: '#94A3B8', background: '#1E293B' }}>
+            {hijriText}
+            <Info className="h-3 w-3 opacity-50" />
+          </div>
+        </div>
+      )}
 
-        <div className="relative z-10 p-5">
-          {/* Row 1: label + link */}
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-60" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
-              </span>
-              <p className="text-xs font-medium tracking-wide text-green-300/80 uppercase">পরবর্তী নামাজ</p>
-            </div>
-            <div className="flex items-center gap-1 text-green-400/60 group-hover:text-green-300 transition-colors">
-              <span className="text-xs">বিস্তারিত</span>
-              <ArrowUpRight className="h-3.5 w-3.5" />
+      {/* Current prayer info */}
+      <div className="px-4 pt-2 pb-4">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-medium mb-1" style={{ color: '#10B981' }}>চলমান নামাজ</p>
+            <p className="text-3xl font-bold leading-none mb-2" style={{ color: '#F8FAFC' }}>
+              {current?.nameBn ?? next?.nameBn ?? '—'}
+            </p>
+            {/* Location */}
+            <div className="flex items-center gap-1 rounded-full px-2.5 py-1 w-fit"
+              style={{ background: '#1E293B', border: '1px solid #334155' }}>
+              <MapPin className="h-3 w-3" style={{ color: '#10B981' }} />
+              <span className="text-xs" style={{ color: '#CBD5E1' }}>{cityName}</span>
             </div>
           </div>
 
-          {/* Row 2: name + countdown */}
-          <div className="flex items-end justify-between mb-4">
-            <div>
-              <p className="text-4xl font-black tracking-tight text-white leading-none">
-                {next?.nameBn ?? '—'}
-              </p>
-              <p className="mt-1.5 font-mono text-lg font-semibold text-green-200">
-                {next?.time12 ?? '——'}
-              </p>
-            </div>
-            <div className="text-right">
-              <p className="text-[10px] text-green-400/60 mb-1 uppercase tracking-wider">বাকি</p>
-              <p className="font-mono text-2xl font-bold text-white tabular-nums leading-none">
-                {countdown.short}
-              </p>
-            </div>
-          </div>
-
-          {/* Progress bar */}
-          <div className="mb-5 h-1 w-full overflow-hidden rounded-full bg-white/10">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-green-300 via-emerald-400 to-white transition-all duration-1000"
-              style={{ width: `${progressPct}%` }}
-            />
-          </div>
-
-          {/* 5 prayers row */}
-          <div className="flex gap-1.5">
-            {entries.map((e) => {
-              const isActive = current?.key === e.key
-              const isNext   = next?.key === e.key && !isActive
-              return (
-                <div
-                  key={e.key}
-                  style={{ flex: isActive ? '2.2' : '1' }}
-                  className={`flex flex-col items-center rounded-xl transition-all duration-300 ${
-                    isActive
-                      ? 'bg-white/18 ring-1 ring-white/30 py-3 px-2'
-                      : isNext
-                      ? 'bg-white/8 ring-1 ring-green-400/30 py-2.5 px-1'
-                      : 'bg-white/5 py-2.5 px-1'
-                  }`}
-                >
-                  <span className={`leading-none mb-1 ${isActive ? 'text-xl' : 'text-sm'}`}>
-                    {PRAYER_ICONS[e.key]}
-                  </span>
-                  <p className={`font-semibold mb-0.5 ${isActive ? 'text-xs text-white' : 'text-[10px] text-green-400/60'}`}>
-                    {e.nameBn}
-                  </p>
-                  <p className={`font-mono font-bold tabular-nums leading-tight ${
-                    isActive ? 'text-sm text-white' : isNext ? 'text-[11px] text-green-100' : 'text-[10px] text-green-300/70'
-                  }`}>
-                    {e.time12.replace(' AM', '').replace(' PM', '')}
-                  </p>
-                  <p className={`text-[9px] mt-0.5 ${isActive ? 'text-green-300/80' : isNext ? 'text-green-300/70' : 'text-green-500/40'}`}>
-                    {e.time12.slice(-2)}
-                  </p>
-                  {isActive && (
-                    <div className="mt-1.5 flex items-center gap-1">
-                      <span className="h-1.5 w-1.5 rounded-full bg-green-300 animate-pulse" />
-                      <span className="text-[9px] text-green-300 font-medium">চলছে</span>
-                    </div>
-                  )}
-                </div>
-              )
-            })}
+          {/* Countdown box */}
+          <div className="rounded-xl px-4 py-3 text-right flex-shrink-0"
+            style={{ background: '#166534' }}>
+            <p className="text-xs mb-1" style={{ color: '#86efac' }}>সময় বাকি</p>
+            <p className="font-mono text-xl font-bold leading-none" style={{ color: '#FFFFFF' }}>
+              {countdown.short}
+            </p>
+            <p className="text-[10px] mt-1" style={{ color: '#86efac' }}>
+              {current?.nameBn ?? next?.nameBn} শেষ হতে
+            </p>
           </div>
         </div>
       </div>
-    </Link>
+
+      {/* Divider */}
+      <div style={{ height: '1px', background: '#1E293B' }} />
+
+      {/* Prayer rows */}
+      <div className="px-3 py-2">
+        {entries.map((e, idx) => {
+          const isActive = current?.key === e.key
+          const endTime = e.key === 'Fajr' ? getFajrEnd() : getEndTime(idx)
+
+          return (
+            <div
+              key={e.key}
+              className="flex items-center justify-between rounded-xl px-3 py-2.5 mb-1 transition-colors"
+              style={isActive
+                ? { background: '#14532d', border: '1px solid #166534' }
+                : { background: 'transparent', border: '1px solid transparent' }
+              }
+            >
+              <div className="flex items-center gap-2.5">
+                <span className="text-base w-5 text-center">{PRAYER_ICONS[e.key]}</span>
+                <span className={`text-sm font-semibold ${isActive ? 'text-white' : ''}`}
+                  style={{ color: isActive ? '#F8FAFC' : '#CBD5E1' }}>
+                  {e.nameBn}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs tabular-nums"
+                  style={{ color: isActive ? '#86efac' : '#94A3B8' }}>
+                  {e.time12.replace(' AM','').replace(' PM','')} - {endTime.replace(' AM','').replace(' PM','')}
+                </span>
+                {isActive && (
+                  <span className="rounded-full px-2 py-0.5 text-[10px] font-bold"
+                    style={{ background: '#10B981', color: '#fff' }}>
+                    চলছে
+                  </span>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Bottom bar */}
+      <div style={{ borderTop: '1px solid #1E293B' }}
+        className="flex items-center justify-between px-4 py-3">
+        <p className="text-xs" style={{ color: '#64748B' }}>{todayStr}</p>
+        <Link to="/prayer"
+          className="flex items-center gap-0.5 text-xs font-medium transition-colors hover:opacity-80"
+          style={{ color: '#10B981' }}>
+          পূর্ণ সময়সূচি
+          <ChevronRight className="h-3.5 w-3.5" />
+        </Link>
+      </div>
+    </div>
   )
 }
