@@ -57,6 +57,13 @@ function DuaCard({ dua }: { dua: Dua }) {
           {dua.arabic}
         </p>
 
+        {/* Transliteration */}
+        {dua.transliteration && (
+          <p className="text-xs italic text-green-700 dark:text-green-400 line-clamp-1 mb-2 leading-relaxed">
+            {dua.transliteration}
+          </p>
+        )}
+
         {/* Meaning preview */}
         <p className="text-xs text-[var(--color-text-muted)] line-clamp-2 leading-relaxed">
           {dua.meaning}
