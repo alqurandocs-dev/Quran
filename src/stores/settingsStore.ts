@@ -67,7 +67,7 @@ export const useSettingsStore = create<SettingsState>()(
     }),
     {
       name: 'quran-settings',
-      version: 1,
+      version: 2,
       migrate: (persistedState, _version) => {
         const s = persistedState as Record<string, unknown>
         if (s['banglaTranslation'] === 'bn.muhiuddinkhan') s['banglaTranslation'] = 'bn.bengali'

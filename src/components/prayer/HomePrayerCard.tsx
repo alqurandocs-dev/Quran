@@ -68,34 +68,41 @@ export function HomePrayerCard() {
           </div>
 
           {/* 5 prayers row */}
-          <div className="grid grid-cols-5 gap-1">
+          <div className="flex gap-1.5">
             {entries.map((e) => {
               const isActive = current?.key === e.key
               const isNext   = next?.key === e.key && !isActive
-              const highlight = isActive || isNext
               return (
                 <div
                   key={e.key}
-                  className={`flex flex-col items-center rounded-xl py-2.5 px-1 transition-colors ${
+                  style={{ flex: isActive ? '2.2' : '1' }}
+                  className={`flex flex-col items-center rounded-xl transition-all duration-300 ${
                     isActive
-                      ? 'bg-white/15 ring-1 ring-white/25'
+                      ? 'bg-white/18 ring-1 ring-white/30 py-3 px-2'
                       : isNext
-                      ? 'bg-white/8 ring-1 ring-green-400/30'
-                      : 'bg-white/5'
+                      ? 'bg-white/8 ring-1 ring-green-400/30 py-2.5 px-1'
+                      : 'bg-white/5 py-2.5 px-1'
                   }`}
                 >
-                  <span className="mb-1 text-sm leading-none">{PRAYER_ICONS[e.key]}</span>
-                  <p className={`text-[10px] font-semibold mb-0.5 ${highlight ? 'text-green-200' : 'text-green-400/60'}`}>
+                  <span className={`leading-none mb-1 ${isActive ? 'text-xl' : 'text-sm'}`}>
+                    {PRAYER_ICONS[e.key]}
+                  </span>
+                  <p className={`font-semibold mb-0.5 ${isActive ? 'text-xs text-white' : 'text-[10px] text-green-400/60'}`}>
                     {e.nameBn}
                   </p>
-                  <p className={`font-mono text-[11px] font-bold tabular-nums leading-tight ${isActive ? 'text-white' : highlight ? 'text-green-100' : 'text-green-300/70'}`}>
+                  <p className={`font-mono font-bold tabular-nums leading-tight ${
+                    isActive ? 'text-sm text-white' : isNext ? 'text-[11px] text-green-100' : 'text-[10px] text-green-300/70'
+                  }`}>
                     {e.time12.replace(' AM', '').replace(' PM', '')}
                   </p>
-                  <p className={`text-[9px] mt-0.5 ${highlight ? 'text-green-300/70' : 'text-green-500/40'}`}>
+                  <p className={`text-[9px] mt-0.5 ${isActive ? 'text-green-300/80' : isNext ? 'text-green-300/70' : 'text-green-500/40'}`}>
                     {e.time12.slice(-2)}
                   </p>
                   {isActive && (
-                    <span className="mt-1 h-1 w-1 rounded-full bg-green-300 animate-pulse" />
+                    <div className="mt-1.5 flex items-center gap-1">
+                      <span className="h-1.5 w-1.5 rounded-full bg-green-300 animate-pulse" />
+                      <span className="text-[9px] text-green-300 font-medium">চলছে</span>
+                    </div>
                   )}
                 </div>
               )
