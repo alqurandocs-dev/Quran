@@ -91,11 +91,11 @@ export function DuaDetailsPage() {
 
       {/* Pronunciation */}
       {showPronunciation && (
-        <div className="rounded-xl bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/30 px-4 py-3 mb-4">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-green-700 dark:text-green-500 mb-1.5">
+        <div className="rounded-xl border px-4 py-3 mb-4" style={{ background: '#0F172A', borderColor: 'rgba(51,65,85,0.5)' }}>
+          <p className="text-[10px] font-semibold uppercase tracking-widest mb-1.5" style={{ color: '#10B981' }}>
             উচ্চারণ
           </p>
-          <p className="text-sm italic text-[var(--color-text)] leading-relaxed">
+          <p className="text-sm italic leading-relaxed" style={{ color: '#E2E8F0' }}>
             {dua.transliteration}
           </p>
         </div>
@@ -103,11 +103,11 @@ export function DuaDetailsPage() {
 
       {/* Meaning */}
       {showMeaning && (
-        <div className="rounded-xl bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/20 px-4 py-3 mb-4">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-500 mb-1.5">
+        <div className="rounded-xl border px-4 py-3 mb-4" style={{ background: '#0F172A', borderColor: 'rgba(51,65,85,0.5)' }}>
+          <p className="text-[10px] font-semibold uppercase tracking-widest mb-1.5" style={{ color: '#10B981' }}>
             অর্থ
           </p>
-          <p className="text-sm text-[var(--color-text)] leading-relaxed">{dua.meaning}</p>
+          <p className="text-sm leading-relaxed" style={{ color: '#E2E8F0' }}>{dua.meaning}</p>
         </div>
       )}
 
