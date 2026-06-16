@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppLayout } from '@/components/layout/AppLayout'
+import { AdminGuard } from '@/components/layout/AdminGuard'
 import { PageLoader } from '@/components/ui/LoadingSpinner'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/stores/authStore'
@@ -73,7 +74,7 @@ export default function App() {
                 <Route path="/prayer"       element={<PrayerTimesPage />} />
                 <Route path="/settings"     element={<SettingsPage />} />
                 <Route path="/auth"         element={<AuthPage />} />
-                <Route path="/admin"        element={<AdminDashboard />} />
+                <Route path="/admin"        element={<AdminGuard><AdminDashboard /></AdminGuard>} />
               </Route>
             </Routes>
           </Suspense>
