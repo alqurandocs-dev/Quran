@@ -25,7 +25,7 @@ export function JuzListPage() {
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[var(--color-text)] flex items-center gap-2">
-          <BookOpen className="h-6 w-6 text-green-500" />
+          <BookOpen className="h-6 w-6 text-[#14B8A6]" />
           পারা
         </h1>
         <p className="text-sm text-[var(--color-text-muted)] mt-1">
@@ -41,7 +41,7 @@ export function JuzListPage() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="পারা নম্বর বা সূরার নাম দিয়ে খুঁজুন..."
-          className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] py-2.5 pl-10 pr-4 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/50"
+          className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] py-2.5 pl-10 pr-4 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]"
         />
       </div>
 
@@ -51,8 +51,8 @@ export function JuzListPage() {
           <Link key={juz.number} to={`/juz/${juz.number}`}>
             <Card hover className="flex items-center gap-4 py-3 px-4">
               {/* Juz Number Badge */}
-              <div className="flex-shrink-0 flex h-11 w-11 items-center justify-center rounded-full bg-green-600/10 border border-green-500/20">
-                <span className="text-sm font-bold text-green-600 dark:text-green-400">
+              <div className="flex-shrink-0 flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(20,184,166,0.1)] border border-[rgba(20,184,166,0.2)]">
+                <span className="text-sm font-bold text-[#14B8A6]">
                   {formatBanglaNumber(juz.number)}
                 </span>
               </div>

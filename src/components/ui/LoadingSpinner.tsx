@@ -12,7 +12,7 @@ export function LoadingSpinner({ size = 'md', className, label = 'লোড হ�
   return (
     <div className={cn('flex flex-col items-center justify-center gap-3', className)}>
       <div
-        className={cn('animate-spin rounded-full border-2 border-[var(--color-border)] border-t-green-500', sizes[size])}
+        className={cn('animate-spin rounded-full border-2 border-[var(--color-border)] border-t-[#14B8A6]', sizes[size])}
         role="status"
         aria-label={label}
       />

@@ -56,7 +56,7 @@ export function SearchPage() {
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
           placeholder="সূরার নাম, আয়াত বা বাংলা অর্থ লিখুন..."
-          className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-10 pr-4 py-3.5 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-10 pr-4 py-3.5 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[#14B8A6]"
           autoFocus
         />
         {query && (
@@ -82,7 +82,7 @@ export function SearchPage() {
               <button
                 key={r}
                 onClick={() => setQuery(r)}
-                className="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-sm text-[var(--color-text)] hover:border-green-500"
+                className="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-sm text-[var(--color-text)] hover:border-[rgba(20,184,166,0.4)]"
               >
                 {r}
               </button>
@@ -101,7 +101,7 @@ export function SearchPage() {
             {surahResults.map(({ item }) => (
               <Link key={item.number} to={`/quran/${item.number}`}>
                 <div className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-[var(--color-surface)] transition-colors">
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-green-600/10 text-green-600 dark:text-green-400 font-bold text-sm">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-[rgba(20,184,166,0.1)] text-[#14B8A6] font-bold text-sm">
                     {formatBanglaNumber(item.number)}
                   </div>
                   <div className="flex-1">
@@ -110,7 +110,7 @@ export function SearchPage() {
                       {item.englishName} • {formatBanglaNumber(item.numberOfAyahs)} আয়াত
                     </p>
                   </div>
-                  <p className="font-arabic text-lg text-green-600 dark:text-green-400" dir="rtl">
+                  <p className="font-arabic text-lg text-[#14B8A6]" dir="rtl">
                     {item.name}
                   </p>
                 </div>

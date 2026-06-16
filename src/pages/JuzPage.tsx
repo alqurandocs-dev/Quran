@@ -124,16 +124,16 @@ export function JuzPage() {
             <div key={ayah.number}>
               {showSurahHeader && surahData && (
                 <Link to={`/quran/${surahData.number}`}>
-                  <div className="flex items-center justify-between bg-green-600/5 px-4 py-3 border-b border-green-500/10">
+                  <div className="flex items-center justify-between bg-[rgba(20,184,166,0.05)] px-4 py-3 border-b border-[rgba(20,184,166,0.1)]">
                     <div>
-                      <p className="font-semibold text-sm text-green-700 dark:text-green-400">
+                      <p className="font-semibold text-sm text-[#14B8A6]">
                         {surahData.banglaName}
                       </p>
                       <p className="text-xs text-[var(--color-text-muted)]">
                         {formatBanglaNumber(surahData.numberOfAyahs)} আয়াত
                       </p>
                     </div>
-                    <p className="font-arabic text-xl text-green-600 dark:text-green-300">{surahData.name}</p>
+                    <p className="font-arabic text-xl text-[#F8FAFC]">{surahData.name}</p>
                   </div>
                 </Link>
               )}

@@ -51,7 +51,7 @@ export function AuthPage() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-green-600 text-white font-arabic text-3xl mb-3">
+          <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-[#14B8A6] 00 text-white font-arabic text-3xl mb-3">
             ق
           </div>
           <h1 className="text-2xl font-bold text-[var(--color-text)]">আল-কুরআন</h1>
@@ -93,7 +93,7 @@ export function AuthPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="ইমেইল"
               required
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-10 pr-4 py-3 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-10 pr-4 py-3 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[#14B8A6]"
             />
           </div>
 
@@ -106,7 +106,7 @@ export function AuthPage() {
               placeholder="পাসওয়ার্ড"
               required
               minLength={6}
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-10 pr-10 py-3 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-10 pr-10 py-3 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[#14B8A6]"
             />
             <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2">
               {showPw ? <EyeOff className="h-4 w-4 text-[var(--color-text-muted)]" /> : <Eye className="h-4 w-4 text-[var(--color-text-muted)]" />}
@@ -114,7 +114,7 @@ export function AuthPage() {
           </div>
 
           {error && <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-3 py-2">{error}</p>}
-          {success && <p className="text-sm text-green-600 bg-green-50 dark:bg-green-900/20 rounded-lg px-3 py-2">{success}</p>}
+          {success && <p className="text-sm text-[#14B8A6] bg-[rgba(20,184,166,0.08)] rounded-lg px-3 py-2">{success}</p>}
 
           <Button type="submit" className="w-full" disabled={loading} size="lg">
             {loading ? 'অপেক্ষা করুন...' : mode === 'login' ? 'লগইন' : 'সাইনআপ'}
@@ -125,7 +125,7 @@ export function AuthPage() {
           {mode === 'login' ? 'অ্যাকাউন্ট নেই?' : 'ইতোমধ্যে আছে?'}{' '}
           <button
             onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
-            className="text-green-500 font-medium hover:underline"
+            className="text-[#14B8A6] 00 font-medium hover:underline"
           >
             {mode === 'login' ? 'সাইনআপ করুন' : 'লগইন করুন'}
           </button>

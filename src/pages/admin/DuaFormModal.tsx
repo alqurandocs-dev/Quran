@@ -85,7 +85,7 @@ export function DuaFormModal({ initial, onSave, onClose }: Props) {
             <select
               value={form.category}
               onChange={(e) => set('category', e.target.value)}
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-green-500/40"
+              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]"
             >
               {DUA_CATEGORIES.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -105,7 +105,7 @@ export function DuaFormModal({ initial, onSave, onClose }: Props) {
               value={form.titleBangla}
               onChange={(e) => set('titleBangla', e.target.value)}
               placeholder="যেমন: ঘুমের আগের দোয়া"
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/40"
+              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]"
             />
           </div>
 
@@ -120,7 +120,7 @@ export function DuaFormModal({ initial, onSave, onClose }: Props) {
               placeholder="আরবি লিখুন..."
               rows={3}
               dir="rtl"
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-xl font-arabic text-right text-amber-600 dark:text-amber-300 placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/40 leading-loose resize-none"
+              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-xl font-arabic text-right text-[#94A3B8] dark:text-[#94A3B8] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)] leading-loose resize-none"
             />
           </div>
 
@@ -134,7 +134,7 @@ export function DuaFormModal({ initial, onSave, onClose }: Props) {
               onChange={(e) => set('transliteration', e.target.value)}
               placeholder="আল্লাহুম্মা বিকা আসবাহনা..."
               rows={2}
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/40 resize-none"
+              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)] resize-none"
             />
           </div>
 
@@ -148,7 +148,7 @@ export function DuaFormModal({ initial, onSave, onClose }: Props) {
               onChange={(e) => set('meaning', e.target.value)}
               placeholder="বাংলায় অর্থ লিখুন..."
               rows={3}
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/40 resize-none"
+              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)] resize-none"
             />
           </div>
 
@@ -163,7 +163,7 @@ export function DuaFormModal({ initial, onSave, onClose }: Props) {
                 value={form.reference}
                 onChange={(e) => set('reference', e.target.value)}
                 placeholder="বুখারী ১/৩০২"
-                className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/40"
+                className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]"
               />
             </div>
             <div>
@@ -173,7 +173,7 @@ export function DuaFormModal({ initial, onSave, onClose }: Props) {
               <select
                 value={form.authenticity ?? ''}
                 onChange={(e) => set('authenticity', e.target.value)}
-                className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-green-500/40"
+                className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]"
               >
                 <option value="">— নির্বাচন করুন</option>
                 <option value="sahih">✅ সহীহ</option>
@@ -205,7 +205,7 @@ export function DuaFormModal({ initial, onSave, onClose }: Props) {
                 'flex-1 flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-bold transition-colors',
                 saving
                   ? 'bg-green-700 text-green-200 cursor-not-allowed'
-                  : 'bg-green-600 text-white hover:bg-green-500'
+                  : 'bg-[#14B8A6] text-white hover:bg-[#14B8A6]'
               )}
             >
               {saving ? (

@@ -88,7 +88,7 @@ export function SurahPage() {
     <div className="mx-auto max-w-3xl">
       {/* Surah Header */}
       <div className="sticky top-16 z-30 backdrop-blur-md border-b px-4 py-3"
-        style={{ background: 'rgba(2,8,23,0.92)', borderColor: 'rgba(255,255,255,0.08)' }}>
+        style={{ background: 'rgba(11,17,32,0.92)', borderColor: 'rgba(255,255,255,0.08)' }}>
         <div className="flex items-center justify-between">
           <button onClick={() => navigate('/quran')} aria-label="পেছনে" className="flex h-9 w-9 items-center justify-center rounded-xl text-[#94A3B8] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#F8FAFC] transition-colors">
             <ChevronLeft className="h-5 w-5" />
@@ -107,7 +107,7 @@ export function SurahPage() {
             className={cn(
               'flex h-9 w-9 items-center justify-center rounded-xl transition-colors',
               isSurahPlaying
-                ? 'bg-[rgba(16,185,129,0.15)] text-[#10B981]'
+                ? 'bg-[rgba(20,184,166,0.12)] text-[#14B8A6]'
                 : 'text-[#94A3B8] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#F8FAFC]'
             )}
           >

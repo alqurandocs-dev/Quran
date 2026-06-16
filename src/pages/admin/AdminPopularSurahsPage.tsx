@@ -36,12 +36,12 @@ export function AdminPopularSurahsPage() {
       ).slice(0, 8)
     : []
 
-  if (isLoading) return <div className="flex justify-center py-16"><Loader2 className="h-5 w-5 animate-spin text-green-500" /></div>
+  if (isLoading) return <div className="flex justify-center py-16"><Loader2 className="h-5 w-5 animate-spin text-[#14B8A6]" /></div>
 
   return (
     <div className="space-y-5">
       {!SUPABASE_ENABLED && (
-        <div className="rounded-2xl bg-amber-500/10 ring-1 ring-amber-500/30 px-4 py-3 text-sm text-amber-400">
+        <div className="rounded-2xl bg-[rgba(255,255,255,0.06)] ring-1 ring-[rgba(255,255,255,0.1)] px-4 py-3 text-sm text-[#94A3B8]">
           Supabase সংযুক্ত নেই — পরিবর্তন সংরক্ষিত হবে না
         </div>
       )}
@@ -59,7 +59,7 @@ export function AdminPopularSurahsPage() {
             <div key={n} className="flex items-center gap-3 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3">
               <GripVertical className="h-4 w-4 text-[var(--color-text-muted)] shrink-0" />
               <span className="w-6 text-xs font-bold text-[var(--color-text-muted)] tabular-nums">{i + 1}</span>
-              <p className="font-arabic text-xl text-green-400 leading-relaxed">{surah.name}</p>
+              <p className="font-arabic text-xl text-[#14B8A6] leading-relaxed">{surah.name}</p>
               <div className="flex-1 min-w-0">
                 <p className="font-semibold text-sm text-[var(--color-text)]">{surah.banglaName}</p>
                 <p className="text-xs text-[var(--color-text-muted)]">সূরা {n} · {surah.numberOfAyahs} আয়াত</p>
@@ -95,7 +95,7 @@ export function AdminPopularSurahsPage() {
                 <button key={s.number} onClick={() => add(s.number)}
                   className={cn('flex w-full items-center gap-3 px-4 py-2.5 text-left hover:bg-[var(--color-surface)] transition-colors',
                     list.includes(s.number) && 'opacity-40 cursor-not-allowed')}>
-                  <p className="font-arabic text-lg text-green-400 w-8">{s.name}</p>
+                  <p className="font-arabic text-lg text-[#14B8A6] w-8">{s.name}</p>
                   <div>
                     <p className="text-sm font-semibold text-[var(--color-text)]">{s.banglaName}</p>
                     <p className="text-xs text-[var(--color-text-muted)]">সূরা {s.number}</p>
@@ -108,7 +108,7 @@ export function AdminPopularSurahsPage() {
       )}
 
       <button onClick={handleSave} disabled={isSaving || !SUPABASE_ENABLED}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 py-2.5 text-sm font-bold text-white hover:bg-green-500 disabled:opacity-60 transition-colors">
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#14B8A6] py-2.5 text-sm font-bold text-white hover:bg-[#14B8A6] disabled:opacity-60 transition-colors">
         {isSaving ? <><Loader2 className="h-4 w-4 animate-spin" />সংরক্ষণ...</> : saved ? '✓ সংরক্ষিত' : <><Save className="h-4 w-4" />সংরক্ষণ করুন</>}
       </button>
     </div>

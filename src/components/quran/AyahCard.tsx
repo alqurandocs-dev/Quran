@@ -106,7 +106,7 @@ export function AyahCard({
       className={cn(
         'ayah-card group mx-4 my-3 rounded-2xl border transition-all duration-200',
         highlighted || isCurrentlyPlaying
-          ? 'border-[#10B981]/30 bg-[#10B981]/[0.06] shadow-sm shadow-[#10B981]/10'
+          ? 'border-[rgba(20,184,166,0.25)] bg-[rgba(20,184,166,0.07)] shadow-sm shadow-[#14B8A6]/10'
           : 'border-[#334155]/60 bg-[#111827] hover:border-[#334155]'
       )}
     >
@@ -133,7 +133,7 @@ export function AyahCard({
             className={cn(
               'flex h-8 w-8 items-center justify-center rounded-lg transition-colors',
               isCurrentlyPlaying
-                ? 'bg-[rgba(16,185,129,0.15)] text-[#10B981]'
+                ? 'bg-[rgba(20,184,166,0.12)] text-[#14B8A6]'
                 : 'text-[#64748B] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#CBD5E1]'
             )}
           >
@@ -161,7 +161,7 @@ export function AyahCard({
             className={cn(
               'flex h-8 w-8 items-center justify-center rounded-lg transition-colors',
               bookmarked
-                ? 'bg-[rgba(16,185,129,0.15)] text-[#10B981]'
+                ? 'bg-[rgba(20,184,166,0.12)] text-[#14B8A6]'
                 : 'text-[#64748B] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#CBD5E1] disabled:opacity-30 disabled:cursor-not-allowed'
             )}
           >
@@ -202,7 +202,7 @@ export function AyahCard({
         {/* Transliteration */}
         {showTransliteration && transliteration && (
           <div className="mb-3 rounded-xl bg-[#0F172A] border border-[#334155]/50 px-4 py-3">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#10B981] mb-1.5">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#14B8A6] mb-1.5">
               উচ্চারণ
             </p>
             <p className={cn('text-sm italic text-[#E2E8F0]', lhClass)}>
@@ -214,7 +214,7 @@ export function AyahCard({
         {/* Translation */}
         {translation && (
           <div className="rounded-xl bg-[#0F172A] border border-[#334155]/50 px-4 py-3">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#10B981] mb-1.5">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#14B8A6] mb-1.5">
               অর্থ
             </p>
             <p className={cn('text-sm text-[#E2E8F0]', lhClass)}>
@@ -228,7 +228,7 @@ export function AyahCard({
           <div className="mt-3">
             <button
               onClick={() => setShowTafsirLocal(!showTafsirLocal)}
-              className="flex items-center gap-1.5 text-xs text-[#10B981] hover:text-[#059669] transition-colors"
+              className="flex items-center gap-1.5 text-xs text-[#14B8A6] hover:text-[#0d9488] transition-colors"
             >
               {showTafsirLocal ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
               তাফসীর {showTafsirLocal ? 'বন্ধ করুন' : 'দেখুন'}
@@ -240,7 +240,7 @@ export function AyahCard({
                   <p className="text-sm text-[#64748B]">লোড হচ্ছে...</p>
                 ) : tafsirQuery.data ? (
                   <>
-                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[#10B981] mb-2">
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[#14B8A6] mb-2">
                       তাফসীর (Maududi)
                     </p>
                     <p className="text-sm text-[#CBD5E1] leading-relaxed">

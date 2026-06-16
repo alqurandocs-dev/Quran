@@ -64,7 +64,7 @@ export function AdminDashboard() {
           <ArrowLeft className="h-4 w-4 text-[var(--color-text-muted)]" />
         </Link>
         <div className="flex items-center gap-2">
-          <LayoutDashboard className="h-4 w-4 text-green-500" />
+          <LayoutDashboard className="h-4 w-4 text-[#14B8A6]" />
           <span className="font-bold text-sm text-[var(--color-text)]">Admin Panel</span>
         </div>
         {/* Mobile: current section */}
@@ -72,7 +72,7 @@ export function AdminDashboard() {
           onClick={() => setMobileOpen(v => !v)}
           className="ml-auto flex items-center gap-2 rounded-xl bg-[var(--color-surface)] px-3 py-1.5 text-xs font-semibold text-[var(--color-text)] lg:hidden ring-1 ring-[var(--color-border)]"
         >
-          <active.icon className="h-3.5 w-3.5 text-green-400" />
+          <active.icon className="h-3.5 w-3.5 text-[#14B8A6]" />
           {active.label}
           <span className="text-[var(--color-text-muted)]">▾</span>
         </button>
@@ -93,7 +93,7 @@ export function AdminDashboard() {
                   className={cn(
                     'flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors',
                     activeId === item.id
-                      ? 'bg-green-500/10 text-green-400 font-semibold'
+                      ? 'font-semibold text-[#14B8A6] bg-[rgba(20,184,166,0.1)]'
                       : 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-text)]'
                   )}
                 >
@@ -123,7 +123,7 @@ export function AdminDashboard() {
                       onClick={() => { setActiveId(item.id); setMobileOpen(false) }}
                       className={cn(
                         'flex w-full items-center gap-3 px-4 py-3 text-left',
-                        activeId === item.id ? 'text-green-400 font-semibold bg-green-500/5' : 'text-[var(--color-text)]'
+                        activeId === item.id ? 'font-semibold text-[#14B8A6] bg-[rgba(20,184,166,0.05)]' : 'text-[var(--color-text)]'
                       )}
                     >
                       <item.icon className="h-4 w-4 shrink-0" />
@@ -143,8 +143,8 @@ export function AdminDashboard() {
         <main className="flex-1 min-w-0 px-4 py-5 max-w-2xl">
           {/* Section header */}
           <div className="flex items-center gap-3 mb-5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-green-500/15">
-              <active.icon className="h-5 w-5 text-green-400" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[rgba(20,184,166,0.12)]">
+              <active.icon className="h-5 w-5 text-[#14B8A6]" />
             </div>
             <div>
               <h1 className="font-bold text-lg text-[var(--color-text)]">{active.label}</h1>

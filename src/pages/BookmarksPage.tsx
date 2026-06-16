@@ -55,7 +55,7 @@ export function BookmarksPage() {
               <div className="flex items-start gap-3">
                 <Link to={`/quran/${bm.surahNumber}#ayah-${bm.ayahNumber}`} className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-bold text-green-600 dark:text-green-400 bg-green-600/10 px-2 py-0.5 rounded-full">
+                    <span className="text-xs font-bold text-[#14B8A6] bg-[rgba(20,184,166,0.1)] px-2 py-0.5 rounded-full">
                       {bm.surahName}
                     </span>
                     <span className="text-xs text-[var(--color-text-muted)]">
@@ -63,7 +63,7 @@ export function BookmarksPage() {
                     </span>
                   </div>
                   {bm.ayahText && (
-                    <p className="font-arabic text-base text-right text-[var(--color-text)] dark:text-amber-100 leading-loose truncate" dir="rtl">
+                    <p className="font-arabic text-base text-right text-[var(--color-text)]  leading-loose truncate" dir="rtl">
                       {bm.ayahText.slice(0, 80)}...
                     </p>
                   )}

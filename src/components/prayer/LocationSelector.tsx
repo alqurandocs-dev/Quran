@@ -16,9 +16,9 @@ export function LocationSelector() {
       {/* Trigger */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-sm text-[var(--color-text)] hover:border-green-500/40 transition-colors"
+        className="flex items-center gap-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-sm text-[var(--color-text)] hover:border-[rgba(20,184,166,0.4)] transition-colors"
       >
-        <MapPin className="h-3.5 w-3.5 text-green-500" />
+        <MapPin className="h-3.5 w-3.5 text-[#14B8A6]" />
         <span className="font-medium max-w-[120px] truncate">{location.cityName}</span>
         <ChevronDown className={cn('h-3.5 w-3.5 transition-transform', open && 'rotate-180')} />
       </button>
@@ -35,11 +35,11 @@ export function LocationSelector() {
               disabled={detecting}
             >
               {detecting ? (
-                <Loader2 className="h-4 w-4 animate-spin text-green-500" />
+                <Loader2 className="h-4 w-4 animate-spin text-[#14B8A6]" />
               ) : (
-                <Navigation className="h-4 w-4 text-green-500" />
+                <Navigation className="h-4 w-4 text-[#14B8A6]" />
               )}
-              <span className="font-medium text-green-600 dark:text-green-400">
+              <span className="font-medium text-[#14B8A6]">
                 {detecting ? 'অবস্থান নির্ধারণ...' : 'স্বয়ংক্রিয় (GPS)'}
               </span>
             </button>
@@ -51,13 +51,13 @@ export function LocationSelector() {
                   key={city.en}
                   className={cn(
                     'flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-[var(--color-surface)] transition-colors',
-                    !location.useGPS && location.cityIndex === i && 'text-green-600 dark:text-green-400 bg-green-500/5'
+                    !location.useGPS && location.cityIndex === i && 'text-[#14B8A6] bg-[rgba(20,184,166,0.05)]'
                   )}
                   onClick={() => { selectCity(i); setOpen(false) }}
                 >
                   <span>{city.name}</span>
                   {!location.useGPS && location.cityIndex === i && (
-                    <span className="text-xs text-green-500">✓</span>
+                    <span className="text-xs text-[#14B8A6]">✓</span>
                   )}
                 </button>
               ))}

@@ -26,11 +26,11 @@ export function Navbar() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-green-600 text-white font-arabic text-lg">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg font-arabic text-lg" style={{ background: '#14B8A6', color: '#0B1120' }}>
               ق
             </div>
             <div className="hidden sm:block">
-              <p className="text-sm font-bold text-green-600 leading-none">আল-কুরআন</p>
+              <p className="text-sm font-bold leading-none" style={{ color: '#14B8A6' }}>আল-কুরআন</p>
               <p className="text-xs text-[var(--color-text-muted)]">Al-Quran Bangla</p>
             </div>
           </Link>
@@ -44,7 +44,7 @@ export function Navbar() {
                 className={cn(
                   'flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm transition-colors',
                   pathname === path
-                    ? 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400'
+                    ? 'bg-[rgba(20,184,166,0.12)] text-[#14B8A6]'
                     : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)]'
                 )}
               >
@@ -93,7 +93,7 @@ export function Navbar() {
                   className={cn(
                     'flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-colors',
                     pathname === path
-                      ? 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400'
+                      ? 'bg-[rgba(20,184,166,0.12)] text-[#14B8A6]'
                       : 'text-[var(--color-text)] hover:bg-[var(--color-surface)]'
                   )}
                 >

@@ -1,6 +1,5 @@
 import { Bell, BellOff } from 'lucide-react'
 import { usePrayerStore, type NotificationPrefs } from '@/stores/prayerStore'
-import { cn } from '@/lib/utils'
 
 interface Props {
   prayerKey: keyof NotificationPrefs
@@ -13,12 +12,10 @@ export function NotificationToggle({ prayerKey }: Props) {
   return (
     <button
       onClick={() => toggleNotif(prayerKey)}
-      className={cn(
-        'flex h-7 w-7 items-center justify-center rounded-full transition-colors',
-        enabled
-          ? 'bg-green-100 text-green-600 dark:bg-green-900/40 dark:text-green-400'
-          : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
-      )}
+      className="flex h-7 w-7 items-center justify-center rounded-full transition-colors"
+      style={enabled
+        ? { background: 'rgba(20,184,166,0.12)', color: '#14B8A6' }
+        : { color: 'var(--color-text-muted)' }}
       aria-label={enabled ? 'নোটিফিকেশন বন্ধ করুন' : 'নোটিফিকেশন চালু করুন'}
     >
       {enabled ? <Bell className="h-3.5 w-3.5" /> : <BellOff className="h-3.5 w-3.5" />}

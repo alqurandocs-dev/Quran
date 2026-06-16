@@ -122,8 +122,8 @@ export function AudioPlayer() {
         {/* Thin progress bar at top */}
         <div className="h-0.5 bg-[var(--color-border)] w-full">
           <div
-            className="h-full bg-green-500 transition-all"
-            style={{ width: `${progress}%` }}
+            className="h-full transition-all"
+            style={{ background: '#14B8A6', width: `${progress}%` }}
           />
         </div>
 
@@ -131,8 +131,8 @@ export function AudioPlayer() {
           <div className="flex items-center gap-3">
             {/* Info */}
             <div className="flex items-center gap-2 flex-1 min-w-0">
-              <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-green-600/20">
-                <Volume2 className="h-4 w-4 text-green-500" />
+              <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-[rgba(20,184,166,0.12)]">
+                <Volume2 className="h-4 w-4 text-[#14B8A6]" />
               </div>
               <div className="min-w-0">
                 <p className="text-xs font-semibold text-[var(--color-text)] truncate">
@@ -164,7 +164,7 @@ export function AudioPlayer() {
 
               <Button
                 size="icon"
-                className="h-10 w-10 rounded-full bg-green-600 hover:bg-green-700 flex-shrink-0"
+                className="h-10 w-10 rounded-full flex-shrink-0 hover:opacity-90" style={{ background: '#14B8A6' }}
                 onClick={() => setPlaying(!isPlaying)}
                 aria-label={isPlaying ? 'পজ' : 'প্লে'}
               >
@@ -205,7 +205,7 @@ export function AudioPlayer() {
               max={duration || 0}
               value={currentTime}
               onChange={handleSeek}
-              className="flex-1 h-1 accent-green-500 cursor-pointer"
+              className="flex-1 h-1 accent-[#14B8A6] cursor-pointer"
               aria-label="সময়"
             />
             <span className="text-[10px] text-[var(--color-text-muted)] w-7 sm:hidden">{formatTime(duration)}</span>

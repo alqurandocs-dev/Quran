@@ -50,9 +50,9 @@ export function PrayerTimesSection() {
         <div className="flex items-center gap-2">
           <LocationSelector />
           {isOffline && (
-            <div className="flex items-center gap-1 rounded-full bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5">
-              <WifiOff className="h-3 w-3 text-amber-500" />
-              <span className="text-xs text-amber-600 dark:text-amber-400">অফলাইন</span>
+            <div className="flex items-center gap-1 rounded-full bg-[rgba(255,255,255,0.06)] px-2 py-0.5">
+              <WifiOff className="h-3 w-3 text-[#94A3B8]" />
+              <span className="text-xs text-[#94A3B8] dark:text-[#94A3B8]">অফলাইন</span>
             </div>
           )}
         </div>
@@ -63,9 +63,9 @@ export function PrayerTimesSection() {
       </div>
 
       {isOffline && (
-        <div className="flex items-center gap-2 rounded-xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 px-3 py-2">
-          <RefreshCw className="h-3.5 w-3.5 text-amber-500" />
-          <p className="text-xs text-amber-600 dark:text-amber-400">
+        <div className="flex items-center gap-2 rounded-xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.08)] px-3 py-2">
+          <RefreshCw className="h-3.5 w-3.5 text-[#94A3B8]" />
+          <p className="text-xs text-[#94A3B8] dark:text-[#94A3B8]">
             সর্বশেষ সংরক্ষিত সময়সূচী প্রদর্শন করা হচ্ছে
           </p>
         </div>

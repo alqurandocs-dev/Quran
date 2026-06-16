@@ -36,7 +36,7 @@ function Toggle({ value, onToggle }: { value: boolean; onToggle: () => void }) {
   return (
     <button
       onClick={onToggle}
-      className={`relative flex-shrink-0 h-6 w-11 rounded-full transition-colors ${value ? 'bg-green-600' : 'bg-[var(--color-border)]'}`}
+      className={`relative flex-shrink-0 h-6 w-11 rounded-full transition-colors ${value ? 'bg-[#14B8A6]' : 'bg-[var(--color-border)]'}`}
       role="switch"
       aria-checked={value}
     >
@@ -58,7 +58,7 @@ function SelectInput<T extends string>({
     <select
       value={value}
       onChange={(e) => onChange(e.target.value as T)}
-      className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2 py-1.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-green-500/50 max-w-[180px]"
+      className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2 py-1.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/40 max-w-[180px]"
     >
       {options.map((o) => (
         <option key={o.value} value={o.value}>{o.label}</option>
@@ -148,7 +148,7 @@ export function SettingsPage() {
                 key={v}
                 onClick={() => setTheme(v)}
                 className={`flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors ${
-                  theme === v ? 'bg-green-600 text-white' : 'text-[var(--color-text-muted)]'
+                  theme === v ? 'bg-[#14B8A6] text-white' : 'text-[var(--color-text-muted)]'
                 }`}
               >
                 {icon} {label}
@@ -221,7 +221,7 @@ export function SettingsPage() {
                 key={v}
                 onClick={() => setTranslationLanguage(v)}
                 className={`rounded px-3 py-1 text-xs font-medium transition-colors ${
-                  translationLanguage === v ? 'bg-green-600 text-white' : 'text-[var(--color-text-muted)]'
+                  translationLanguage === v ? 'bg-[#14B8A6] text-white' : 'text-[var(--color-text-muted)]'
                 }`}
               >
                 {v === 'bangla' ? 'বাংলা' : 'English'}
@@ -250,7 +250,7 @@ export function SettingsPage() {
           <select
             value={preferredQari}
             onChange={(e) => setQari(e.target.value)}
-            className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2 py-1.5 text-sm text-[var(--color-text)] max-w-[200px] focus:outline-none focus:ring-2 focus:ring-green-500/50"
+            className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-2 py-1.5 text-sm text-[var(--color-text)] max-w-[200px] focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/40"
           >
             {QARIS.map((q) => (
               <option key={q.id} value={q.id}>{q.name}</option>

@@ -2,43 +2,50 @@
 
 @layer base {
   :root {
-    color-scheme: light;
-    --color-bg: #ffffff;
-    --color-surface: #f8fafc;
-    --color-border: #e2e8f0;
-    --color-text: #0f172a;
-    --color-text-muted: #64748b;
-    --color-primary: #166534;
-    --color-primary-hover: #15803d;
-    --color-accent: #d4a017;
+    color-scheme: dark;
+    --color-bg: #0B1120;
+    --color-surface: #111827;
+    --color-surface-elevated: #1F2937;
+    --color-border: rgba(255,255,255,0.08);
+    --color-divider: rgba(255,255,255,0.05);
+    --color-text: #F9FAFB;
+    --color-text-secondary: #CBD5E1;
+    --color-text-muted: #94A3B8;
+    --color-text-disabled: #64748B;
+    --color-primary: #14B8A6;
+    --color-primary-hover: #0d9488;
+    --color-primary-light: rgba(20,184,166,0.12);
+    --color-accent: #14B8A6;
+    --color-arabic: #F8FAFC;
   }
 
   .dark {
     color-scheme: dark;
-    --color-bg: #020817;
+    --color-bg: #0B1120;
     --color-surface: #111827;
-    --color-surface-elevated: #1E293B;
-    --color-border: #334155;
-    --color-divider: rgba(255,255,255,0.08);
-    --color-text: #F8FAFC;
+    --color-surface-elevated: #1F2937;
+    --color-border: rgba(255,255,255,0.08);
+    --color-divider: rgba(255,255,255,0.05);
+    --color-text: #F9FAFB;
     --color-text-secondary: #CBD5E1;
     --color-text-muted: #94A3B8;
     --color-text-disabled: #64748B;
-    --color-primary: #10B981;
-    --color-primary-hover: #059669;
-    --color-primary-light: rgba(16,185,129,0.12);
-    --color-accent: #10B981;
+    --color-primary: #14B8A6;
+    --color-primary-hover: #0d9488;
+    --color-primary-light: rgba(20,184,166,0.12);
+    --color-accent: #14B8A6;
     --color-arabic: #F8FAFC;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { background-color: #0B1120; }
 
   body {
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family: 'Noto Sans Bengali', 'SolaimanLipi', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
-    transition: background-color 0.3s, color 0.3s;
     min-height: 100svh;
   }
 
@@ -62,12 +69,12 @@
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 
 /* Ayah hover */
 .ayah-card { transition: background-color 0.2s ease; }
-.ayah-card:hover { background-color: rgba(255,255,255,0.025); }
-.ayah-card.active { background-color: rgba(16,185,129,0.08); }
+.ayah-card:hover { background-color: rgba(255,255,255,0.02); }
+.ayah-card.active { background-color: rgba(20,184,166,0.07); }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }

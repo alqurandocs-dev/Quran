@@ -6,8 +6,8 @@ import { DuaFormModal } from './DuaFormModal'
 import { cn } from '@/lib/utils'
 
 const AUTHENTICITY_BADGE: Record<string, { label: string; className: string }> = {
-  sahih:  { label: 'সহীহ',     className: 'bg-green-500/20 text-green-400 ring-green-500/30' },
-  hasan:  { label: 'হাসান',    className: 'bg-amber-500/20 text-amber-400 ring-amber-500/30' },
+  sahih:  { label: 'সহীহ',     className: 'bg-[rgba(20,184,166,0.15)] text-[#14B8A6] ring-[rgba(20,184,166,0.3)]' },
+  hasan:  { label: 'হাসান',    className: 'bg-[rgba(255,255,255,0.06)] text-[#94A3B8] ring-[rgba(255,255,255,0.1)]' },
   quran:  { label: 'কুরআনিক', className: 'bg-blue-500/20  text-blue-400  ring-blue-500/30'  },
 }
 
@@ -51,7 +51,7 @@ export function AdminDuasPage() {
           className={cn(
             'flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition-colors',
             isDbEnabled
-              ? 'bg-green-600 text-white hover:bg-green-500'
+              ? 'bg-[#14B8A6] text-white hover:bg-[#14B8A6]'
               : 'bg-[var(--color-surface)] text-[var(--color-text-muted)] cursor-not-allowed opacity-60'
           )}
         >
@@ -64,8 +64,8 @@ export function AdminDuasPage() {
       <div className={cn(
         'flex items-center gap-3 rounded-2xl px-4 py-3 ring-1 text-sm',
         isDbEnabled
-          ? 'bg-green-500/10 ring-green-500/30 text-green-400'
-          : 'bg-amber-500/10 ring-amber-500/30 text-amber-400'
+          ? 'bg-[rgba(20,184,166,0.1)] ring-[rgba(20,184,166,0.3)] text-[#14B8A6]'
+          : 'bg-[rgba(255,255,255,0.06)] ring-[rgba(255,255,255,0.1)] text-[#94A3B8]'
       )}>
         {isDbEnabled
           ? <><Database className="h-4 w-4 shrink-0" /> Supabase সংযুক্ত — পরিবর্তন সরাসরি ডেটাবেসে সংরক্ষিত হবে</>
@@ -82,7 +82,7 @@ export function AdminDuasPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="দোয়া খুঁজুন..."
-            className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-9 pr-4 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/40"
+            className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-9 pr-4 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]"
           />
           {search && (
             <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -93,7 +93,7 @@ export function AdminDuasPage() {
         <select
           value={filterCat}
           onChange={(e) => setFilterCat(e.target.value)}
-          className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-green-500/40"
+          className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]"
         >
           <option value="all">সব বিভাগ</option>
           {DUA_CATEGORIES.map((c) => (
@@ -105,7 +105,7 @@ export function AdminDuasPage() {
       {/* List */}
       {isLoading ? (
         <div className="flex items-center justify-center py-20">
-          <Loader2 className="h-6 w-6 animate-spin text-green-500" />
+          <Loader2 className="h-6 w-6 animate-spin text-[#14B8A6]" />
         </div>
       ) : filtered.length === 0 ? (
         <div className="text-center py-20 text-[var(--color-text-muted)]">
@@ -146,7 +146,7 @@ export function AdminDuasPage() {
                     <p className="text-[10px] text-[var(--color-text-muted)]">
                       {cat?.label} · ID: {dua.id}
                     </p>
-                    <p className="font-arabic text-right text-sm text-amber-500 dark:text-amber-300 mt-1 truncate" dir="rtl">
+                    <p className="font-arabic text-right text-sm text-[#94A3B8] dark:text-[#94A3B8] mt-1 truncate" dir="rtl">
                       {dua.arabic.slice(0, 60)}{dua.arabic.length > 60 ? '…' : ''}
                     </p>
                   </div>

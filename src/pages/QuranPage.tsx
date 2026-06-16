@@ -39,7 +39,7 @@ export function QuranPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="সূরা খুঁজুন..."
-          className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-10 pr-4 py-3 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-10 pr-4 py-3 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[#14B8A6]"
         />
       </div>
 
@@ -51,9 +51,10 @@ export function QuranPage() {
             onClick={() => setTab(t)}
             className={`flex-1 rounded-lg py-2 text-sm font-medium transition-colors ${
               tab === t
-                ? 'bg-green-600 text-white'
+                ? 'text-[#0B1120] font-semibold'
                 : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
             }`}
+            style={tab === t ? { background: '#14B8A6' } : {}}
           >
             {t}
           </button>
@@ -66,22 +67,17 @@ export function QuranPage() {
           {filtered.map((surah) => (
             <Link key={surah.number} to={`/quran/${surah.number}`}>
               <div className="flex items-center gap-4 rounded-xl px-4 py-3 hover:bg-[var(--color-surface)] transition-colors group">
-                {/* Number badge */}
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-green-600/10 text-green-600 dark:text-green-400 font-bold text-sm">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg font-bold text-sm"
+                  style={{ background: 'rgba(20,184,166,0.1)', color: '#14B8A6' }}>
                   {formatBanglaNumber(surah.number)}
                 </div>
-
-                {/* Info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="font-semibold text-[var(--color-text)] group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                    <p className="font-semibold text-[var(--color-text)] group-hover:text-[#14B8A6] transition-colors">
                       {surah.banglaName}
                     </p>
-                    <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                      surah.revelationType === 'Meccan'
-                        ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
-                        : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
-                    }`}>
+                    <span className="text-xs px-1.5 py-0.5 rounded-full text-[#94A3B8]"
+                      style={{ background: 'rgba(255,255,255,0.06)' }}>
                       {surah.revelationType === 'Meccan' ? 'মক্কী' : 'মাদানী'}
                     </span>
                   </div>
@@ -89,9 +85,7 @@ export function QuranPage() {
                     {surah.englishName} • {formatBanglaNumber(surah.numberOfAyahs)} আয়াত
                   </p>
                 </div>
-
-                {/* Arabic name */}
-                <p className="font-arabic text-xl text-green-700 dark:text-green-400 flex-shrink-0" dir="rtl">
+                <p className="font-arabic text-xl flex-shrink-0" dir="rtl" style={{ color: '#F8FAFC' }}>
                   {surah.name}
                 </p>
               </div>
@@ -106,7 +100,7 @@ export function QuranPage() {
           {Array.from({ length: 30 }, (_, i) => i + 1).map((para) => (
             <Link key={para} to={`/juz/${para}`}>
               <Card hover className="text-center py-4">
-                <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                <p className="text-2xl font-bold text-[#14B8A6]">
                   {formatBanglaNumber(para)}
                 </p>
                 <p className="text-sm text-[var(--color-text-muted)]">পারা {formatBanglaNumber(para)}</p>

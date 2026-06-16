@@ -48,9 +48,9 @@ export function TahajjudCard({ special, fajrHHMM }: Props) {
 
       {/* Optional prayers */}
       <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden">
-        <div className="flex items-center gap-2 bg-amber-500/10 border-b border-amber-500/20 px-4 py-2.5">
-          <Sunrise className="h-4 w-4 text-amber-400" />
-          <p className="text-sm font-semibold text-amber-400">নফল নামাজের সময়</p>
+        <div className="flex items-center gap-2 bg-[rgba(255,255,255,0.06)] border-b border-amber-500/20 px-4 py-2.5">
+          <Sunrise className="h-4 w-4 text-[#94A3B8]" />
+          <p className="text-sm font-semibold text-[#94A3B8]">নফল নামাজের সময়</p>
         </div>
         <div className="divide-y divide-[var(--color-border)]">
           {OPTIONAL_ROWS.map((row) => (
@@ -62,7 +62,7 @@ export function TahajjudCard({ special, fajrHHMM }: Props) {
                   <p className="text-xs text-[var(--color-text-muted)]">{row.desc}</p>
                 </div>
               </div>
-              <p className="font-mono text-sm font-semibold text-amber-500 tabular-nums">
+              <p className="font-mono text-sm font-semibold text-[#94A3B8] tabular-nums">
                 {special[row.key]}
               </p>
             </div>

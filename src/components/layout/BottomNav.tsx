@@ -24,7 +24,7 @@ export function BottomNav() {
               to={path}
               className={cn(
                 'flex flex-col items-center justify-center gap-1 py-2 text-xs transition-colors',
-                active ? 'text-green-500' : 'text-[var(--color-text-muted)]'
+                active ? 'text-[#14B8A6]' : 'text-[var(--color-text-muted)]'
               )}
             >
               <Icon className={cn('h-5 w-5 transition-transform', active && 'scale-110')} />

@@ -45,11 +45,11 @@ export function FavoritesPage() {
       </div>
 
       {!user && (
-        <Card className="mb-5 bg-amber-50/5 border-amber-500/20 text-center py-4">
+        <Card className="mb-5 bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.08)] text-center py-4">
           <p className="text-sm text-[var(--color-text-muted)]">
             লগইন করলে আপনার প্রিয় আয়াত সব ডিভাইসে সিনক হবে।
           </p>
-          <Link to="/auth" className="mt-2 inline-block text-sm text-green-500 hover:underline">
+          <Link to="/auth" className="mt-2 inline-block text-sm text-[#14B8A6] hover:underline">
             লগইন / রেজিস্ট্রেশন →
           </Link>
         </Card>
@@ -64,7 +64,7 @@ export function FavoritesPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="সূরার নাম বা আরবি দিয়ে খুঁজুন..."
-            className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] py-2.5 pl-10 pr-4 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/50"
+            className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] py-2.5 pl-10 pr-4 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]"
           />
         </div>
       )}
@@ -84,7 +84,7 @@ export function FavoritesPage() {
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-600/10 px-2 py-0.5 rounded-full">
+                        <span className="text-xs font-semibold text-[#14B8A6] bg-[rgba(20,184,166,0.1)] px-2 py-0.5 rounded-full">
                           {fav.surahName}
                         </span>
                         <span className="text-xs text-[var(--color-text-muted)]">

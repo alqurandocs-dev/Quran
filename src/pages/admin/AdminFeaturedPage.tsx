@@ -52,7 +52,7 @@ function FeaturedModal({
               {(Object.entries(TYPE_META) as [FeaturedItem['type'], typeof TYPE_META.surah][]).map(([k, v]) => (
                 <button key={k} type="button" onClick={() => set('type', k)}
                   className={cn('rounded-xl py-2.5 text-sm font-bold ring-1 transition-colors',
-                    form.type === k ? 'bg-green-500/20 text-green-300 ring-green-500/40' : 'bg-[var(--color-surface)] text-[var(--color-text-muted)] ring-[var(--color-border)]')}>
+                    form.type === k ? 'bg-[rgba(20,184,166,0.15)] text-[#5eead4] ring-[rgba(20,184,166,0.4)]' : 'bg-[var(--color-surface)] text-[var(--color-text-muted)] ring-[var(--color-border)]')}>
                   {v.emoji} {v.label}
                 </button>
               ))}
@@ -66,29 +66,29 @@ function FeaturedModal({
             </label>
             <input value={form.refId} onChange={e => set('refId', e.target.value)}
               placeholder={TYPE_META[form.type].hint}
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/40" />
+              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]" />
           </div>
 
           {/* Title + Subtitle */}
           <div className="space-y-2">
             <input value={form.title} onChange={e => set('title', e.target.value)} placeholder="শিরোনাম *"
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/40" />
+              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]" />
             <input value={form.subtitle ?? ''} onChange={e => set('subtitle', e.target.value)} placeholder="সাব-টাইটেল (ঐচ্ছিক)"
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/40" />
+              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]" />
           </div>
 
           {/* Badge + Order */}
           <div className="grid grid-cols-2 gap-2">
             <input value={form.badge ?? ''} onChange={e => set('badge', e.target.value)} placeholder="Badge: রমজান বিশেষ"
-              className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-green-500/40" />
+              className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]" />
             <input type="number" value={form.sortOrder} onChange={e => set('sortOrder', parseInt(e.target.value) || 0)}
               placeholder="ক্রম: 0"
-              className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-green-500/40" />
+              className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[rgba(20,184,166,0.4)]" />
           </div>
 
           {/* Active */}
           <label className="flex items-center gap-3 cursor-pointer">
-            <div className={cn('relative h-6 w-11 rounded-full transition-colors', form.isActive ? 'bg-green-500' : 'bg-[var(--color-border)]')}>
+            <div className={cn('relative h-6 w-11 rounded-full transition-colors', form.isActive ? 'bg-[#14B8A6]' : 'bg-[var(--color-border)]')}>
               <div className={cn('absolute top-1 h-4 w-4 rounded-full bg-white transition-transform shadow', form.isActive ? 'translate-x-6' : 'translate-x-1')} />
             </div>
             <input type="checkbox" checked={form.isActive} onChange={e => set('isActive', e.target.checked)} className="sr-only" />
@@ -100,7 +100,7 @@ function FeaturedModal({
           <div className="flex gap-3 pt-1">
             <button type="button" onClick={onClose} className="flex-1 rounded-xl border border-[var(--color-border)] py-2.5 text-sm font-medium text-[var(--color-text)] hover:bg-[var(--color-surface)]">বাতিল</button>
             <button type="submit" disabled={saving}
-              className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-green-600 py-2.5 text-sm font-bold text-white hover:bg-green-500 disabled:opacity-70">
+              className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-[#14B8A6] py-2.5 text-sm font-bold text-white hover:bg-[#14B8A6] disabled:opacity-70">
               {saving ? <><Loader2 className="h-4 w-4 animate-spin" />সংরক্ষণ...</> : (initial ? 'আপডেট' : 'যোগ করুন')}
             </button>
           </div>
@@ -124,7 +124,7 @@ export function AdminFeaturedPage() {
   return (
     <div className="space-y-4">
       <div className={cn('flex items-center gap-2 rounded-2xl px-4 py-3 ring-1 text-sm',
-        isDbEnabled ? 'bg-green-500/10 ring-green-500/30 text-green-400' : 'bg-amber-500/10 ring-amber-500/30 text-amber-400')}>
+        isDbEnabled ? 'bg-[rgba(20,184,166,0.1)] ring-[rgba(20,184,166,0.3)] text-[#14B8A6]' : 'bg-[rgba(255,255,255,0.06)] ring-[rgba(255,255,255,0.1)] text-[#94A3B8]')}>
         {isDbEnabled ? <><Database className="h-4 w-4" />Supabase সংযুক্ত</> : <><HardDrive className="h-4 w-4" />Supabase সংযুক্ত নেই — read-only</>}
       </div>
 
@@ -133,12 +133,12 @@ export function AdminFeaturedPage() {
       </p>
 
       <button onClick={() => setEditItem(null)} disabled={!isDbEnabled}
-        className="flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[var(--color-border)] py-3.5 text-sm font-semibold text-[var(--color-text-muted)] hover:border-green-500/40 hover:text-green-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        className="flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[var(--color-border)] py-3.5 text-sm font-semibold text-[var(--color-text-muted)] hover:border-[rgba(20,184,166,0.4)] hover:text-[#14B8A6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
         <Plus className="h-4 w-4" /> নতুন Featured যোগ
       </button>
 
       {isLoading ? (
-        <div className="flex justify-center py-10"><Loader2 className="h-5 w-5 animate-spin text-green-500" /></div>
+        <div className="flex justify-center py-10"><Loader2 className="h-5 w-5 animate-spin text-[#14B8A6]" /></div>
       ) : items.length === 0 ? (
         <div className="text-center py-12 text-[var(--color-text-muted)]">
           <p className="text-3xl mb-2">⭐</p>
@@ -159,14 +159,14 @@ export function AdminFeaturedPage() {
                     <div className="flex items-center gap-2 flex-wrap">
                       <p className="font-semibold text-sm text-[var(--color-text)]">{item.title}</p>
                       {item.badge && (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.06)] text-[#94A3B8] ring-1 ring-[rgba(255,255,255,0.1)]">
                           {item.badge}
                         </span>
                       )}
                     </div>
                     <p className="text-xs text-[var(--color-text-muted)]">
                       {meta.label} · ID: {item.refId} · ক্রম: {item.sortOrder}
-                      {' · '}<span className={item.isActive ? 'text-green-400' : 'text-red-400'}>{item.isActive ? 'সক্রিয়' : 'নিষ্ক্রিয়'}</span>
+                      {' · '}<span className={item.isActive ? 'text-[#14B8A6]' : 'text-red-400'}>{item.isActive ? 'সক্রিয়' : 'নিষ্ক্রিয়'}</span>
                     </p>
                   </div>
                   <div className="flex items-center gap-1 shrink-0">
@@ -174,7 +174,7 @@ export function AdminFeaturedPage() {
                       <>
                         <button onClick={() => toggle({ id: item.id, isActive: !item.isActive })} disabled={!isDbEnabled}
                           className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-white/10 text-[var(--color-text-muted)] transition-colors disabled:opacity-40">
-                          {item.isActive ? <ToggleRight className="h-4 w-4 text-green-400" /> : <ToggleLeft className="h-4 w-4" />}
+                          {item.isActive ? <ToggleRight className="h-4 w-4 text-[#14B8A6]" /> : <ToggleLeft className="h-4 w-4" />}
                         </button>
                         <button onClick={() => setEditItem(item)} disabled={!isDbEnabled}
                           className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-blue-500/10 text-[var(--color-text-muted)] hover:text-blue-400 transition-colors disabled:opacity-40">

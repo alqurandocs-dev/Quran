@@ -37,7 +37,7 @@ export function PrayerSettingsModal({ timings }: Props) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-green-500/40 transition-colors"
+        className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[rgba(20,184,166,0.4)] transition-colors"
         aria-label="নামাজ সেটিংস"
       >
         <Settings2 className="h-4 w-4 text-[var(--color-text-muted)]" />
@@ -67,14 +67,14 @@ export function PrayerSettingsModal({ timings }: Props) {
                   return (
                     <div key={key} className="flex items-center justify-between px-3 py-2.5">
                       <div className="flex items-center gap-2">
-                        {on ? <Bell className="h-3.5 w-3.5 text-green-500" /> : <BellOff className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />}
+                        {on ? <Bell className="h-3.5 w-3.5 text-[#14B8A6]" /> : <BellOff className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />}
                         <span className="text-sm text-[var(--color-text)]">{nameBn}</span>
                       </div>
                       <button
                         onClick={() => handleToggle(k)}
                         className={cn(
                           'relative h-6 w-11 rounded-full transition-colors',
-                          on ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'
+                          on ? 'bg-[#14B8A6]' : 'bg-[rgba(255,255,255,0.12)]'
                         )}
                       >
                         <span className={cn(
@@ -98,12 +98,10 @@ export function PrayerSettingsModal({ timings }: Props) {
                   <button
                     key={opt.value}
                     onClick={() => setNotifLead(opt.value)}
-                    className={cn(
-                      'rounded-lg border py-2 text-sm font-medium transition-colors',
-                      notifLead === opt.value
-                        ? 'border-green-500 bg-green-500/10 text-green-600 dark:text-green-400'
-                        : 'border-[var(--color-border)] text-[var(--color-text)]'
-                    )}
+                    className="rounded-lg border py-2 text-sm font-medium transition-colors"
+                    style={notifLead === opt.value
+                      ? { borderColor: 'rgba(20,184,166,0.4)', background: 'rgba(20,184,166,0.1)', color: '#14B8A6' }
+                      : { borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
                   >
                     {opt.label}
                   </button>

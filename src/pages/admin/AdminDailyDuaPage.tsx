@@ -28,12 +28,12 @@ export function AdminDailyDuaPage() {
       ).slice(0, 6)
     : []
 
-  if (isLoading) return <div className="flex justify-center py-16"><Loader2 className="h-5 w-5 animate-spin text-green-500" /></div>
+  if (isLoading) return <div className="flex justify-center py-16"><Loader2 className="h-5 w-5 animate-spin text-[#14B8A6]" /></div>
 
   return (
     <div className="space-y-5">
       {!SUPABASE_ENABLED && (
-        <div className="rounded-2xl bg-amber-500/10 ring-1 ring-amber-500/30 px-4 py-3 text-sm text-amber-400">
+        <div className="rounded-2xl bg-[rgba(255,255,255,0.06)] ring-1 ring-[rgba(255,255,255,0.1)] px-4 py-3 text-sm text-[#94A3B8]">
           Supabase সংযুক্ত নেই — পরিবর্তন সংরক্ষিত হবে না
         </div>
       )}
@@ -51,7 +51,7 @@ export function AdminDailyDuaPage() {
           </p>
         </div>
         <label className="cursor-pointer">
-          <div className={cn('relative h-6 w-11 rounded-full transition-colors', form.active ? 'bg-green-500' : 'bg-[var(--color-border)]')}
+          <div className={cn('relative h-6 w-11 rounded-full transition-colors', form.active ? 'bg-[#14B8A6]' : 'bg-[var(--color-border)]')}
             onClick={() => setForm(f => ({ ...f, active: !f.active }))}>
             <div className={cn('absolute top-1 h-4 w-4 rounded-full bg-white transition-transform shadow', form.active ? 'translate-x-6' : 'translate-x-1')} />
           </div>
@@ -60,10 +60,10 @@ export function AdminDailyDuaPage() {
 
       {/* Selected dua preview */}
       {selectedDua ? (
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#2d1a00] via-[#3a2200] to-[#1a0f00] ring-1 ring-amber-500/20 p-4">
+        <div className="relative overflow-hidden rounded-2xl border p-4" style={{ background: '#111827', borderColor: 'rgba(255,255,255,0.08)' }}>
           <div className="flex items-start justify-between mb-2">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-amber-400/70">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[#14B8A6]">
                 {DUA_CATEGORIES.find(c => c.id === selectedDua.category)?.icon} নির্বাচিত দোয়া
               </p>
               <p className="font-bold text-white mt-0.5">{selectedDua.titleBangla}</p>
@@ -73,7 +73,7 @@ export function AdminDailyDuaPage() {
               <X className="h-3.5 w-3.5 text-white" />
             </button>
           </div>
-          <p className="font-arabic text-right text-lg text-amber-200 leading-loose" dir="rtl">
+          <p className="font-arabic text-right text-lg text-[#F8FAFC] leading-loose" dir="rtl">
             {selectedDua.arabic.slice(0, 80)}{selectedDua.arabic.length > 80 ? '…' : ''}
           </p>
         </div>
@@ -115,7 +115,7 @@ export function AdminDailyDuaPage() {
       </div>
 
       <button onClick={handleSave} disabled={isSaving || !SUPABASE_ENABLED}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 py-2.5 text-sm font-bold text-white hover:bg-green-500 disabled:opacity-60 transition-colors">
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#14B8A6] py-2.5 text-sm font-bold text-white hover:bg-[#14B8A6] disabled:opacity-60 transition-colors">
         {isSaving ? <><Loader2 className="h-4 w-4 animate-spin" />সংরক্ষণ...</> : saved ? '✓ সংরক্ষিত' : <><Save className="h-4 w-4" />সংরক্ষণ করুন</>}
       </button>
     </div>

@@ -20,7 +20,7 @@ function Toggle({ label, value, onToggle }: { label: string; value: boolean; onT
         onClick={onToggle}
         className={cn(
           'relative h-5 w-9 rounded-full transition-colors',
-          value ? 'bg-green-600' : 'bg-[var(--color-border)]'
+          value ? 'bg-[#14B8A6] 00' : 'bg-[var(--color-border)]'
         )}
         role="switch"
         aria-checked={value}
@@ -172,8 +172,8 @@ export function AyahShareModal() {
                       className={cn(
                         'rounded-xl border px-2 py-2 text-xs text-center transition-all',
                         imageFormat === key
-                          ? 'border-green-500 bg-green-600/10 text-green-500 font-semibold'
-                          : 'border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-green-500/50'
+                          ? 'border-[rgba(20,184,166,0.4)] 00 bg-[#14B8A6] 00/10 text-[#14B8A6] 00 font-semibold'
+                          : 'border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[rgba(20,184,166,0.4)] 00/50'
                       )}
                     >
                       <p className="text-base mb-0.5">{f.icon}</p>
@@ -209,7 +209,7 @@ export function AyahShareModal() {
             <div>
               <button
                 onClick={() => setShowAdvanced(!showAdvanced)}
-                className="flex items-center gap-1 text-xs text-[var(--color-text-muted)] hover:text-green-500 transition-colors"
+                className="flex items-center gap-1 text-xs text-[var(--color-text-muted)] hover:text-[#14B8A6] 00 transition-colors"
               >
                 {showAdvanced ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
                 উন্নত বিকল্প
@@ -220,25 +220,25 @@ export function AyahShareModal() {
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-xs text-[var(--color-text)]">আরবি ফন্ট</span>
-                      <span className="text-xs text-green-500 font-mono">{arabicFontSize}px</span>
+                      <span className="text-xs text-[#14B8A6] 00 font-mono">{arabicFontSize}px</span>
                     </div>
                     <input
                       type="range" min={24} max={72} step={2}
                       value={arabicFontSize}
                       onChange={(e) => setArabicFontSize(Number(e.target.value))}
-                      className="w-full accent-green-500"
+                      className="w-full accent-[#14B8A6]"
                     />
                   </div>
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-xs text-[var(--color-text)]">অনুবাদ ফন্ট</span>
-                      <span className="text-xs text-green-500 font-mono">{translationFontSize}px</span>
+                      <span className="text-xs text-[#14B8A6] 00 font-mono">{translationFontSize}px</span>
                     </div>
                     <input
                       type="range" min={12} max={28} step={1}
                       value={translationFontSize}
                       onChange={(e) => setTranslationFontSize(Number(e.target.value))}
-                      className="w-full accent-green-500"
+                      className="w-full accent-[#14B8A6]"
                     />
                   </div>
                 </div>
@@ -247,9 +247,9 @@ export function AyahShareModal() {
 
             {/* ── STATUS MESSAGE ── */}
             {status === 'success' && (
-              <div className="flex items-center gap-2 rounded-xl bg-green-600/10 border border-green-500/30 px-3 py-2.5">
-                <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
-                <p className="text-sm text-green-500">আয়াতের ছবিটি সফলভাবে তৈরি হয়েছে ✨</p>
+              <div className="flex items-center gap-2 rounded-xl bg-[#14B8A6] 00/10 border border-[rgba(20,184,166,0.4)] 00/30 px-3 py-2.5">
+                <Check className="h-4 w-4 text-[#14B8A6] 00 flex-shrink-0" />
+                <p className="text-sm text-[#14B8A6] 00">আয়াতের ছবিটি সফলভাবে তৈরি হয়েছে ✨</p>
               </div>
             )}
             {status === 'error' && (
@@ -275,7 +275,7 @@ export function AyahShareModal() {
               </Button>
 
               <Button
-                className="gap-2 bg-green-600 hover:bg-green-700 text-white"
+                className="gap-2 bg-[#14B8A6] 00 hover:opacity-90 00 text-white"
                 disabled={isGenerating}
                 onClick={() => handleExport('share')}
               >
