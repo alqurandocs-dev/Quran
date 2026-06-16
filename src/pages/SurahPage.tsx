@@ -76,7 +76,7 @@ export function SurahPage() {
   if (error) return (
     <div className="p-8 text-center">
       <p className="text-red-500 mb-4">ডেটা লোড করতে সমস্যা হয়েছে</p>
-      <Button onClick={() => window.location.reload()}>আবার চেষ্টা করুন</Button>
+      <button onClick={() => window.location.reload()} className="rounded-xl border border-[#334155] bg-[#111827] px-4 py-2 text-sm text-[#CBD5E1] hover:bg-[#1E293B] transition-colors">আবার চেষ্টা করুন</button>
     </div>
   )
 
