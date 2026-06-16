@@ -6,7 +6,7 @@ export interface SharePayload {
 }
 
 export async function shareImage(payload: SharePayload): Promise<'shared' | 'downloaded'> {
-  const { blob, filename, title = 'আল-কুরআন', text = 'আল-কুরআন থেকে' } = payload
+  const { blob, filename, title = 'Nooraya', text = 'Nooraya থেকে' } = payload
 
   if (navigator.share && navigator.canShare) {
     const file = new File([blob], filename, { type: blob.type })

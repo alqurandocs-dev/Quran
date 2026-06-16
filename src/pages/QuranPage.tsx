@@ -27,7 +27,7 @@ export function QuranPage() {
     <div className="mx-auto max-w-4xl px-4 py-6">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-[var(--color-text)] mb-1">আল-কুরআনুল কারীম</h1>
+        <h1 className="text-2xl font-bold text-[var(--color-text)] mb-1 tracking-tight">Nooraya <span className="font-arabic font-normal">— القرآن الكريم</span></h1>
         <p className="text-sm text-[var(--color-text-muted)]">১১৪টি সূরা • ৩০টি পারা • ৬২৩৬টি আয়াত</p>
       </div>
 

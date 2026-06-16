@@ -36,11 +36,11 @@ function AdminLoginForm() {
     <div className="flex min-h-[80vh] items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl mb-3"
-            style={{ background: 'rgba(20,184,166,0.12)', color: '#14B8A6' }}>
-            <Lock className="h-6 w-6" />
+          <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl font-bold text-2xl mb-3"
+            style={{ background: '#14B8A6', color: '#0B1120' }}>
+            N
           </div>
-          <h1 className="text-xl font-bold text-[var(--color-text)]">অ্যাডমিন প্যানেল</h1>
+          <h1 className="text-xl font-bold text-[var(--color-text)] tracking-tight">Nooraya Admin</h1>
           <p className="text-sm text-[var(--color-text-muted)] mt-1">অনুমোদিত অ্যাকাউন্ট দিয়ে লগইন করুন</p>
         </div>
 

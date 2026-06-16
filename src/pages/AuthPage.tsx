@@ -34,10 +34,10 @@ export function AuthPage() {
     <div className="flex min-h-[80vh] items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-[#14B8A6] text-white font-arabic text-3xl mb-3">
-            ق
+          <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-[#14B8A6] text-[#0B1120] font-bold text-3xl mb-3">
+            N
           </div>
-          <h1 className="text-2xl font-bold text-[var(--color-text)]">আল-কুরআন</h1>
+          <h1 className="text-2xl font-bold text-[var(--color-text)] tracking-tight">Nooraya</h1>
           <p className="text-sm text-[var(--color-text-muted)] mt-1">লগইন করুন</p>
         </div>
 

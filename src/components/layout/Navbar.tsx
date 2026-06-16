@@ -26,12 +26,12 @@ export function Navbar() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg font-arabic text-lg" style={{ background: '#14B8A6', color: '#0B1120' }}>
-              ق
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg font-bold text-base" style={{ background: '#14B8A6', color: '#0B1120' }}>
+              N
             </div>
             <div className="hidden sm:block">
-              <p className="text-sm font-bold leading-none" style={{ color: '#14B8A6' }}>আল-কুরআন</p>
-              <p className="text-xs text-[var(--color-text-muted)]">Al-Quran Bangla</p>
+              <p className="text-sm font-bold leading-none tracking-tight" style={{ color: '#14B8A6' }}>Nooraya</p>
+              <p className="text-xs text-[var(--color-text-muted)]">Bangla Quran App</p>
             </div>
           </Link>
 

@@ -29,7 +29,7 @@ export function SurahPage() {
   useEffect(() => {
     if (surah) {
       addRecentSurah(surahNumber)
-      document.title = `${surah.banglaName} - আল-কুরআন`
+      document.title = `${surah.banglaName} - Nooraya`
     }
   }, [surahNumber, surah, addRecentSurah])
 

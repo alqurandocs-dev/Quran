@@ -57,7 +57,7 @@ export function JuzPage() {
   })
 
   useEffect(() => {
-    document.title = `পারা ${juzNumber} - আল-কুরআন`
+    document.title = `পারা ${juzNumber} - Nooraya`
   }, [juzNumber])
 
   if (!juzInfo) return <div className="p-4 text-center">পারা পাওয়া যায়নি</div>

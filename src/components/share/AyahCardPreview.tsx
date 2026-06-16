@@ -281,7 +281,7 @@ export const AyahCardPreview = forwardRef<HTMLDivElement, AyahCardPreviewProps>(
                     letterSpacing: '0.05em',
                   }}
                 >
-                  আল-কুরআন
+                  Nooraya
                 </span>
               </div>
             )}
@@ -311,7 +311,7 @@ export const AyahCardPreview = forwardRef<HTMLDivElement, AyahCardPreviewProps>(
                   fontStyle: 'italic',
                 }}
               >
-                Al-Quran App
+                Nooraya App
               </p>
             )}
           </div>

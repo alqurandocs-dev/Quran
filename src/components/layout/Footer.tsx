@@ -26,13 +26,13 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl font-arabic text-xl font-bold"
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl font-bold text-lg"
                 style={{ background: '#14B8A6', color: '#0B1120' }}>
-                ق
+                N
               </div>
               <div>
-                <p className="font-bold text-base" style={{ color: '#F9FAFB' }}>আল-কুরআন</p>
-                <p className="text-xs" style={{ color: '#64748B' }}>Al-Quran Bangla</p>
+                <p className="font-bold text-base tracking-tight" style={{ color: '#F9FAFB' }}>Nooraya</p>
+                <p className="text-xs" style={{ color: '#64748B' }}>Bangla Quran App</p>
               </div>
             </div>
             <p className="text-sm leading-relaxed" style={{ color: '#64748B' }}>
@@ -131,7 +131,7 @@ export function Footer() {
       <div className="border-t" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
           <p className="text-xs" style={{ color: '#475569' }}>
-            © {new Date().getFullYear()} আল-কুরআন বাংলা। সর্বস্বত্ব সংরক্ষিত।
+            © {new Date().getFullYear()} Nooraya। সর্বস্বত্ব সংরক্ষিত।
           </p>
           <p className="text-xs" style={{ color: '#475569' }}>
             তৈরি করেছে <span style={{ color: '#14B8A6' }}>Microvex</span>
