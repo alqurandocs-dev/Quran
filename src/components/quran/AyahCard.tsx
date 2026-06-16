@@ -9,7 +9,6 @@ import { useFavorites } from '@/hooks/useFavorites'
 import { useAuthStore } from '@/stores/authStore'
 import { useShareStore } from '@/stores/shareStore'
 import { SURAHS } from '@/data/surahs'
-import { Button } from '@/components/ui/Button'
 import { quranApi } from '@/services/quranApi'
 import { latinToBangla } from '@/lib/transliterate'
 

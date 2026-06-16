@@ -10,8 +10,7 @@ import { pushProgressToSupabase } from '@/hooks/useReadingProgress'
 import { SURAHS } from '@/data/surahs'
 import { AyahCard } from '@/components/quran/AyahCard'
 import { PageLoader, LoadingSpinner } from '@/components/ui/LoadingSpinner'
-import { Button } from '@/components/ui/Button'
-import { formatBanglaNumber } from '@/lib/utils'
+import { formatBanglaNumber, cn } from '@/lib/utils'
 
 export function SurahPage() {
   const { surahId } = useParams<{ surahId: string }>()
