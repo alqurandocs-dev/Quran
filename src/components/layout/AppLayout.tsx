@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { Navbar } from './Navbar'
 import { BottomNav } from './BottomNav'
+import { Footer } from './Footer'
 import { AudioPlayer } from '@/components/audio/AudioPlayer'
 import { AyahShareModal } from '@/components/share/AyahShareModal'
 import { useSettingsStore } from '@/stores/settingsStore'
@@ -28,6 +29,7 @@ export function AppLayout() {
       <main className="flex-1 pb-16 md:pb-0">
         <Outlet />
       </main>
+      <Footer />
       <AudioPlayer />
       <AyahShareModal />
       <BottomNav />
