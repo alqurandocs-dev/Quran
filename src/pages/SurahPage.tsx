@@ -93,9 +93,9 @@ export function SurahPage() {
       <div className="sticky top-16 z-30 backdrop-blur-md border-b px-4 py-3"
         style={{ background: 'rgba(2,8,23,0.92)', borderColor: 'rgba(255,255,255,0.08)' }}>
         <div className="flex items-center justify-between">
-          <Button variant="ghost" size="icon" onClick={() => navigate('/quran')} aria-label="পেছনে">
+          <button onClick={() => navigate('/quran')} aria-label="পেছনে" className="flex h-9 w-9 items-center justify-center rounded-xl text-[#94A3B8] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#F8FAFC] transition-colors">
             <ChevronLeft className="h-5 w-5" />
-          </Button>
+          </button>
 
           <div className="text-center">
             <p className="font-arabic text-xl" style={{ color: '#F8FAFC' }}>{surah.name}</p>
