@@ -91,42 +91,51 @@ export function SurahPage() {
   return (
     <div className="mx-auto max-w-3xl">
       {/* Surah Header */}
-      <div className="sticky top-16 z-30 bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-[var(--color-border)] px-4 py-3">
+      <div className="sticky top-16 z-30 backdrop-blur-md border-b px-4 py-3"
+        style={{ background: 'rgba(2,8,23,0.92)', borderColor: 'rgba(255,255,255,0.08)' }}>
         <div className="flex items-center justify-between">
           <Button variant="ghost" size="icon" onClick={() => navigate('/quran')} aria-label="পেছনে">
             <ChevronLeft className="h-5 w-5" />
           </Button>
 
           <div className="text-center">
-            <p className="font-arabic text-xl text-green-600 dark:text-green-400">{surah.name}</p>
-            <p className="text-xs text-[var(--color-text-muted)]">
+            <p className="font-arabic text-xl" style={{ color: '#F8FAFC' }}>{surah.name}</p>
+            <p className="text-xs" style={{ color: '#64748B' }}>
               {surah.banglaName} • {formatBanglaNumber(surah.numberOfAyahs)} আয়াত
             </p>
           </div>
 
-          <div className="flex items-center gap-1">
-            <Button variant="ghost" size="icon" onClick={handlePlaySurah} aria-label="তিলাওয়াত">
-              {isSurahPlaying ? (
-                <Pause className="h-5 w-5 text-green-500" />
-              ) : (
-                <Play className="h-5 w-5" />
-              )}
-            </Button>
-          </div>
+          <button
+            onClick={handlePlaySurah}
+            aria-label="তিলাওয়াত"
+            className={cn(
+              'flex h-9 w-9 items-center justify-center rounded-xl transition-colors',
+              isSurahPlaying
+                ? 'bg-[rgba(16,185,129,0.15)] text-[#10B981]'
+                : 'text-[#94A3B8] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#F8FAFC]'
+            )}
+          >
+            {isSurahPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+          </button>
         </div>
       </div>
 
-      {/* Bismillah (except Surah 9 and Surah 1's first ayah) */}
+      {/* Bismillah */}
       {surahNumber !== 9 && (
-        <div className="text-center py-8 px-4">
-          <p className="font-arabic text-3xl text-green-700 dark:text-amber-200 leading-loose">
+        <div className="text-center py-10 px-4">
+          <p className="font-arabic text-3xl leading-loose" style={{ color: '#F8FAFC' }}>
             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
           </p>
+          <div className="mt-3 flex items-center justify-center gap-3">
+            <div className="h-px w-16" style={{ background: 'rgba(255,255,255,0.08)' }} />
+            <span className="text-xs" style={{ color: '#334155' }}>﷽</span>
+            <div className="h-px w-16" style={{ background: 'rgba(255,255,255,0.08)' }} />
+          </div>
         </div>
       )}
 
       {/* Ayahs */}
-      <div className="divide-y divide-[var(--color-border)]">
+      <div className="py-2">
         {ayahs.map((ayah, idx) => (
           <AyahCard
             key={ayah.number}
@@ -144,28 +153,29 @@ export function SurahPage() {
       </div>
 
       {/* Navigation */}
-      <div className="flex items-center justify-between px-4 py-6 border-t border-[var(--color-border)]">
-        <Button
-          variant="outline"
+      <div className="flex items-center justify-between px-4 py-8 mt-4 border-t"
+        style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+        <button
           disabled={surahNumber <= 1}
           onClick={() => navigate(`/quran/${surahNumber - 1}`)}
-          className="gap-2"
+          className="flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          style={{ borderColor: '#334155', color: '#CBD5E1', background: '#111827' }}
         >
           <ChevronLeft className="h-4 w-4" />
           {surahNumber > 1 ? SURAHS[surahNumber - 2].banglaName : '—'}
-        </Button>
+        </button>
 
         <LoadingSpinner size="sm" className="opacity-0" />
 
-        <Button
-          variant="outline"
+        <button
           disabled={surahNumber >= 114}
           onClick={() => navigate(`/quran/${surahNumber + 1}`)}
-          className="gap-2"
+          className="flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          style={{ borderColor: '#334155', color: '#CBD5E1', background: '#111827' }}
         >
           {surahNumber < 114 ? SURAHS[surahNumber].banglaName : '—'}
           <ChevronRight className="h-4 w-4" />
-        </Button>
+        </button>
       </div>
     </div>
   )

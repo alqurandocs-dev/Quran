@@ -54,22 +54,18 @@ export function AyahCard({
   const bookmarked = isBookmarked(surahNumber, ayahNumber)
   const favorited = isFavorite(surahNumber, ayahNumber)
 
-  // IntersectionObserver for visibility callback (reading progress)
   useEffect(() => {
     if (!onVisible || !autoSaveProgress) return
     const el = cardRef.current
     if (!el) return
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) onVisible(surahNumber, ayahNumber)
-      },
+      ([entry]) => { if (entry.isIntersecting) onVisible(surahNumber, ayahNumber) },
       { threshold: 0.5, rootMargin: '-40% 0px -40% 0px' }
     )
     obs.observe(el)
     return () => obs.disconnect()
   }, [surahNumber, ayahNumber, onVisible, autoSaveProgress])
 
-  // Tafsir (lazy fetch when expanded)
   const tafsirQuery = useQuery({
     queryKey: ['tafsir', surahNumber, ayahNumber],
     queryFn: () => quranApi.getAyah(`${surahNumber}:${ayahNumber}`, 'en.maududi'),
@@ -81,9 +77,7 @@ export function AyahCard({
     if (isCurrentlyPlaying) {
       setPlaying(false)
     } else {
-      if (currentSurah !== surahNumber) {
-        setSurah(surahNumber, surah.numberOfAyahs)
-      }
+      if (currentSurah !== surahNumber) setSurah(surahNumber, surah.numberOfAyahs)
       setAyah(ayahNumber)
       setPlaying(true)
     }
@@ -91,41 +85,17 @@ export function AyahCard({
 
   const handleBookmark = () => {
     if (!user) return
-    if (bookmarked) {
-      removeBookmark({ surahNumber, ayahNumber })
-    } else {
-      addBookmark({
-        surahNumber,
-        ayahNumber,
-        surahName: surah.banglaName,
-        ayahText: arabicText,
-      })
-    }
+    if (bookmarked) removeBookmark({ surahNumber, ayahNumber })
+    else addBookmark({ surahNumber, ayahNumber, surahName: surah.banglaName, ayahText: arabicText })
   }
 
   const handleFavorite = () => {
-    if (favorited) {
-      removeFavorite({ surahNumber, ayahNumber })
-    } else {
-      addFavorite({
-        surahNumber,
-        ayahNumber,
-        surahName: surah.banglaName,
-        ayahText: arabicText,
-      })
-    }
+    if (favorited) removeFavorite({ surahNumber, ayahNumber })
+    else addFavorite({ surahNumber, ayahNumber, surahName: surah.banglaName, ayahText: arabicText })
   }
 
   const handleShare = () => {
-    openShare({
-      surahNumber,
-      ayahNumber,
-      surahNameBn: surah.banglaName,
-      surahNameAr: surah.name,
-      arabicText,
-      transliteration,
-      translation,
-    })
+    openShare({ surahNumber, ayahNumber, surahNameBn: surah.banglaName, surahNameAr: surah.name, arabicText, transliteration, translation })
   }
 
   const lhClass = lineHeight === 'normal' ? 'leading-normal' : lineHeight === 'loose' ? 'leading-loose' : 'leading-relaxed'
@@ -135,145 +105,157 @@ export function AyahCard({
       ref={cardRef}
       id={`ayah-${ayahNumber}`}
       className={cn(
-        'ayah-card group border-b border-[var(--color-border)] px-4 py-5 last:border-b-0',
-        highlighted && 'bg-green-500/5 active',
-        isCurrentlyPlaying && 'bg-green-500/8'
+        'ayah-card group mx-4 my-3 rounded-2xl border transition-all duration-200',
+        highlighted || isCurrentlyPlaying
+          ? 'border-[#10B981]/30 bg-[#10B981]/[0.06] shadow-sm shadow-[#10B981]/10'
+          : 'border-[#334155]/60 bg-[#111827] hover:border-[#334155]'
       )}
     >
       {/* Ayah Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between px-5 pt-4 pb-2">
+        {/* Ayah number badge */}
         {showAyahNumbers ? (
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-600/10 text-green-600 dark:text-green-400 text-xs font-bold">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#334155] bg-[#0F172A] text-xs font-bold text-[#94A3B8]">
             {formatBanglaNumber(ayahNumber)}
           </div>
         ) : <div className="w-8" />}
 
-        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
+        {/* Action buttons */}
+        <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity duration-150">
           {juz && (
-            <span className="text-xs text-[var(--color-text-muted)] mr-1 hidden sm:block">
-              পারা {formatBanglaNumber(juz)} • পৃ. {page && formatBanglaNumber(page)}
+            <span className="text-xs text-[#64748B] mr-2 hidden sm:block">
+              পারা {formatBanglaNumber(juz)}{page ? ` · পৃ. ${formatBanglaNumber(page)}` : ''}
             </span>
           )}
-          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handlePlayPause} aria-label="তিলাওয়াত">
-            {isCurrentlyPlaying ? (
-              <Pause className="h-4 w-4 text-green-500" />
-            ) : (
-              <Play className="h-4 w-4" />
-            )}
-          </Button>
 
-          {/* Favorite */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8"
+          <button
+            onClick={handlePlayPause}
+            aria-label="তিলাওয়াত"
+            className={cn(
+              'flex h-8 w-8 items-center justify-center rounded-lg transition-colors',
+              isCurrentlyPlaying
+                ? 'bg-[rgba(16,185,129,0.15)] text-[#10B981]'
+                : 'text-[#64748B] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#CBD5E1]'
+            )}
+          >
+            {isCurrentlyPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
+          </button>
+
+          <button
             onClick={handleFavorite}
             aria-label="প্রিয়"
+            className={cn(
+              'flex h-8 w-8 items-center justify-center rounded-lg transition-colors',
+              favorited
+                ? 'bg-[rgba(239,68,68,0.12)] text-red-400'
+                : 'text-[#64748B] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#CBD5E1]'
+            )}
           >
-            <Heart
-              className={cn('h-4 w-4 transition-colors', favorited ? 'fill-red-500 text-red-500' : '')}
-            />
-          </Button>
+            <Heart className={cn('h-3.5 w-3.5', favorited && 'fill-red-400')} />
+          </button>
 
-          {/* Bookmark (authenticated only) */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8"
+          <button
             onClick={handleBookmark}
             disabled={!user}
             aria-label="বুকমার্ক"
             title={!user ? 'বুকমার্কের জন্য লগইন করুন' : undefined}
-          >
-            {bookmarked ? (
-              <BookmarkCheck className="h-4 w-4 text-green-500" />
-            ) : (
-              <Bookmark className="h-4 w-4" />
+            className={cn(
+              'flex h-8 w-8 items-center justify-center rounded-lg transition-colors',
+              bookmarked
+                ? 'bg-[rgba(16,185,129,0.15)] text-[#10B981]'
+                : 'text-[#64748B] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#CBD5E1] disabled:opacity-30 disabled:cursor-not-allowed'
             )}
-          </Button>
+          >
+            {bookmarked ? <BookmarkCheck className="h-3.5 w-3.5" /> : <Bookmark className="h-3.5 w-3.5" />}
+          </button>
 
           {onNoteClick && (
-            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onNoteClick} aria-label="নোট">
+            <button
+              onClick={onNoteClick}
+              aria-label="নোট"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-[#64748B] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#CBD5E1] transition-colors"
+            >
               <span className="text-xs">✏️</span>
-            </Button>
+            </button>
           )}
 
-          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleShare} aria-label="শেয়ার">
-            <Share2 className="h-4 w-4" />
-          </Button>
+          <button
+            onClick={handleShare}
+            aria-label="শেয়ার"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-[#64748B] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#CBD5E1] transition-colors"
+          >
+            <Share2 className="h-3.5 w-3.5" />
+          </button>
         </div>
       </div>
 
       {/* Arabic Text */}
-      <p
-        className={cn(
-          'font-arabic text-right text-[var(--color-arabic,#1a1a2e)] dark:text-amber-100 mb-4',
-          `arabic-${arabicFontSize}`,
-          lhClass
+      <div className="px-5 pb-5 pt-2">
+        <p
+          className={cn('font-arabic text-right mb-5', `arabic-${arabicFontSize}`, lhClass)}
+          style={{ color: '#F8FAFC', letterSpacing: '0.01em' }}
+          dir="rtl"
+          lang="ar"
+        >
+          {arabicText}
+        </p>
+
+        {/* Transliteration */}
+        {showTransliteration && transliteration && (
+          <div className="mb-3 rounded-xl bg-[#0F172A] border border-[#334155]/50 px-4 py-3">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#10B981] mb-1.5">
+              উচ্চারণ
+            </p>
+            <p className={cn('text-sm italic text-[#E2E8F0]', lhClass)}>
+              {latinToBangla(transliteration)}
+            </p>
+          </div>
         )}
-        dir="rtl"
-        lang="ar"
-      >
-        {arabicText}
-      </p>
 
-      {/* Transliteration — DuaPage-এর মতো styled box */}
-      {showTransliteration && transliteration && (
-        <div className="mb-3 rounded-lg bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/30 px-3 py-2">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-green-700 dark:text-green-500 mb-1">
-            উচ্চারণ
-          </p>
-          <p className={cn('text-sm italic text-[var(--color-text)]', lhClass)}>
-            {latinToBangla(transliteration)}
-          </p>
-        </div>
-      )}
+        {/* Translation */}
+        {translation && (
+          <div className="rounded-xl bg-[#0F172A] border border-[#334155]/50 px-4 py-3">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#10B981] mb-1.5">
+              অর্থ
+            </p>
+            <p className={cn('text-sm text-[#E2E8F0]', lhClass)}>
+              {translation}
+            </p>
+          </div>
+        )}
 
-      {/* Translation */}
-      {translation && (
-        <div className="rounded-lg bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/20 px-3 py-2">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-500 mb-1">
-            অর্থ
-          </p>
-          <p className={cn('text-sm text-[var(--color-text)]', lhClass)}>
-            {translation}
-          </p>
-        </div>
-      )}
+        {/* Tafsir Toggle */}
+        {showTafsir && (
+          <div className="mt-3">
+            <button
+              onClick={() => setShowTafsirLocal(!showTafsirLocal)}
+              className="flex items-center gap-1.5 text-xs text-[#10B981] hover:text-[#059669] transition-colors"
+            >
+              {showTafsirLocal ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+              তাফসীর {showTafsirLocal ? 'বন্ধ করুন' : 'দেখুন'}
+            </button>
 
-      {/* Tafsir Toggle */}
-      {showTafsir && (
-        <>
-          <button
-            onClick={() => setShowTafsirLocal(!showTafsirLocal)}
-            className="mt-3 flex items-center gap-1 text-xs text-green-600 dark:text-green-400 hover:underline"
-          >
-            {showTafsirLocal ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
-            তাফসীর {showTafsirLocal ? 'বন্ধ করুন' : 'দেখুন'}
-          </button>
-
-          {showTafsirLocal && (
-            <div className="mt-3 rounded-lg bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 p-4">
-              {tafsirQuery.isLoading ? (
-                <p className="text-sm text-[var(--color-text-muted)]">তাফসীর লোড হচ্ছে...</p>
-              ) : tafsirQuery.data ? (
-                <>
-                  <p className="text-xs font-semibold text-amber-700 dark:text-amber-400 mb-2 uppercase tracking-wide">
-                    তাফসীর (Maududi)
-                  </p>
-                  <p className="text-sm text-[var(--color-text)] leading-relaxed">
-                    {(tafsirQuery.data as unknown as { text: string }).text}
-                  </p>
-                </>
-              ) : (
-                <p className="text-sm text-[var(--color-text-muted)]">
-                  তাফসীর পাওয়া যায়নি।
-                </p>
-              )}
-            </div>
-          )}
-        </>
-      )}
+            {showTafsirLocal && (
+              <div className="mt-2 rounded-xl bg-[#0F172A] border border-[#334155]/50 p-4">
+                {tafsirQuery.isLoading ? (
+                  <p className="text-sm text-[#64748B]">লোড হচ্ছে...</p>
+                ) : tafsirQuery.data ? (
+                  <>
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[#10B981] mb-2">
+                      তাফসীর (Maududi)
+                    </p>
+                    <p className="text-sm text-[#CBD5E1] leading-relaxed">
+                      {(tafsirQuery.data as unknown as { text: string }).text}
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-sm text-[#64748B]">তাফসীর পাওয়া যায়নি।</p>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
