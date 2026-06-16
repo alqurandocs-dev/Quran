@@ -65,6 +65,15 @@ export const useSettingsStore = create<SettingsState>()(
       setQari: (preferredQari) => set({ preferredQari }),
       setPlaybackSpeed: (playbackSpeed) => set({ playbackSpeed }),
     }),
-    { name: 'quran-settings' }
+    {
+      name: 'quran-settings',
+      version: 1,
+      migrate: (persistedState) => {
+        const s = persistedState as Record<string, unknown>
+        if (s.banglaTranslation === 'bn.bengali') s.banglaTranslation = 'bn.muhiuddinkhan'
+        if (s.banglaTranslation === 'bn.hoque') s.banglaTranslation = 'bn.zakaria'
+        return s as SettingsState
+      },
+    }
   )
 )
